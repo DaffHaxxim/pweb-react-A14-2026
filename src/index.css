@@ -1,1 +1,77 @@
 @import "tailwindcss";
+
+/* Tema "Aku Mw Magang": latar putih dengan aksen kuning, emas, oranye, cokelat, dan hitam.
+   Setiap token di bawah otomatis menjadi kelas Tailwind,
+   misalnya --color-oranye menjadi bg-oranye, text-oranye, dan border-oranye. */
+@theme {
+  /* Font: IBM Plex dimuat dari Google Fonts di index.html */
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Permukaan */
+  --color-latar: #ffffff;
+  --color-permukaan: #fffaf0;
+  --color-garis: #e7d9c3;
+
+  /* Teks */
+  --color-teks: #17120d;
+  --color-redup: #6b5a48;
+
+  /* Aksen */
+  --color-kuning-muda: #fef6d8;
+  --color-kuning: #f5c518;
+  --color-emas: #c9971c;
+  --color-oranye-muda: #fde9d9;
+  --color-oranye: #e8650a;
+  --color-oranye-tua: #b84d06;
+  --color-cokelat: #7a4a21;
+  --color-cokelat-tua: #4a2c14;
+  --color-hitam: #17120d;
+
+  /* Status (hijau dan merah tetap dipakai karena diminta soal untuk badge Match) */
+  --color-berhasil: #4f7a12;
+  --color-berhasil-muda: #eef5dc;
+  --color-bahaya: #b3261e;
+  --color-bahaya-muda: #fde7e4;
+
+  /* Bayangan offset tegas agar elemen terlihat kotak dan tajam */
+  --shadow-tegas: 4px 4px 0 0 var(--color-hitam);
+  --shadow-tegas-kecil: 2px 2px 0 0 var(--color-hitam);
+
+  /* Animasi muncul untuk toast dan modal */
+  --animate-muncul: muncul 0.18s ease-out;
+
+  @keyframes muncul {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Gaya dasar halaman */
+@layer base {
+  body {
+    min-height: 100vh;
+    background: var(--color-latar);
+    color: var(--color-teks);
+    font-family: var(--font-sans);
+    /* Garis gradasi kuning ke cokelat di tepi atas halaman */
+    border-top: 6px solid var(--color-kuning);
+    border-image: linear-gradient(90deg, var(--color-kuning), var(--color-oranye), var(--color-cokelat)) 1;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* Garis fokus oranye untuk navigasi keyboard */
+  :focus-visible {
+    outline: 2px solid var(--color-oranye);
+    outline-offset: 2px;
+  }
+}
