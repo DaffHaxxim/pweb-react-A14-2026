@@ -6,6 +6,7 @@ import { BadgeMatch } from "./BadgeMatch";
 import { BadgeGhosting, BadgeStatus } from "./BadgeStatus";
 import { ChecklistPersiapan } from "./ChecklistPersiapan";
 import { KELAS_JUDUL_PANEL } from "./gaya";
+import { LatihanInterview } from "./LatihanInterview";
 import { PindahStatus } from "./PindahStatus";
 import { RiwayatAktivitas } from "./RiwayatAktivitas";
 import { Tombol } from "./Tombol";
@@ -120,8 +121,9 @@ export function DetailLamaran({
             />
           </div>
 
-          {/* ===== Kolom kanan: riwayat aktivitas ===== */}
+          {/* ===== Kolom kanan: latihan interview + riwayat aktivitas ===== */}
           <div className="space-y-5 p-4 lg:col-span-2">
+            <LatihanInterview />
             <RiwayatAktivitas logs={lamaran.activityLogs} onTambahCatatan={onTambahCatatan} />
           </div>
         </div>
