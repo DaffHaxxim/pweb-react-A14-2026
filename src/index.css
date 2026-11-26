@@ -180,8 +180,8 @@
     --color-sekunder: #cda47a;
     --color-berhasil: #a3c97a;
     --color-berhasil-muda: #2c3526;
-    --color-bahaya: #e5948a;
-    --color-bahaya-muda: #43292a;
+    --color-bahaya: #ff5f57; /* merah jenuh agar tetap terbaca merah di latar gelap */
+    --color-bahaya-muda: #4a1d20;
     --color-peringatan: #d1a23c;
     --color-peringatan-muda: #3f3522;
     --color-teks-peringatan: #ecd193;
