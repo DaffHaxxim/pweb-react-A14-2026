@@ -19,3 +19,12 @@ export function BadgeStatus({ status }: { status: ApplicationStatus }) {
     </span>
   );
 }
+
+// Badge peringatan untuk lamaran yang Rawan Ghosting (> 14 hari tanpa kabar)
+export function BadgeGhosting({ hari }: { hari: number }) {
+  return (
+    <span className="inline-block border-2 border-oranye-tua bg-oranye px-2 py-0.5 text-xs font-bold tracking-wide text-latar uppercase">
+      Rawan Ghosting · {hari} hari
+    </span>
+  );
+}

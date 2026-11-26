@@ -1,4 +1,5 @@
 import { Link, NavLink, Outlet } from "react-router";
+import { BannerBentrok } from "../components/BannerBentrok";
 import type { Application } from "../types/lamaran";
 
 interface TataLetakProps {
@@ -52,6 +53,8 @@ export function TataLetak({ applications }: TataLetakProps) {
       </header>
 
       <main className="mx-auto w-full max-w-7xl flex-1 space-y-5 px-4 py-5">
+        {/* Banner bentrok dihitung dari seluruh data, jadi tampil di semua halaman */}
+        <BannerBentrok applications={applications} />
         <Outlet />
       </main>
 

@@ -10,7 +10,8 @@ import { HalamanTidakDitemukan } from "./pages/HalamanTidakDitemukan";
 import { ambilLowongan } from "./services/jobService";
 import type { Application, DataLamaranBaru } from "./types/lamaran";
 import type { JobListing, SumberData } from "./types/lowongan";
-import { buatLamaranBaru, sudahDilamar, tebakModeKerja } from "./utils/lamaran";
+import { mundurkanHari } from "./utils/jadwal";
+import { buatLamaranBaru, buatLog, sudahDilamar, tebakModeKerja } from "./utils/lamaran";
 
 // Skill awal Kapten (minimal 3 sesuai soal)
 const SKILL_AWAL = ["React", "TypeScript", "CSS"];
@@ -93,6 +94,22 @@ export default function App() {
     setApplications((prev) => [lamaranBaru, ...prev]);
   };
 
+  // Simulasi +15 Hari: mundurkan lastUpdatedAt agar badge Rawan Ghosting bisa diuji saat demo.
+  // Contoh update immutable: buat objek baru dengan spread, bukan mengubah properti langsung.
+  const simulasiGhosting = (id: string) => {
+    setApplications((prev) =>
+      prev.map((lamaran) =>
+        lamaran.id === id
+          ? {
+              ...lamaran,
+              lastUpdatedAt: mundurkanHari(lamaran.lastUpdatedAt, 15),
+              activityLogs: [buatLog("Simulasi: waktu update terakhir dimundurkan 15 hari."), ...lamaran.activityLogs],
+            }
+          : lamaran,
+      ),
+    );
+  };
+
   // ===== Tabel route =====
   return (
     <Routes>
@@ -115,7 +132,16 @@ export default function App() {
             />
           }
         />
-        <Route path="lamaran" element={<HalamanLamaran />} />
+        <Route
+          path="lamaran"
+          element={
+            <HalamanLamaran
+              applications={applications}
+              kaptenSkills={kaptenSkills}
+              onSimulasi={simulasiGhosting}
+            />
+          }
+        />
         <Route
           path="lamaran/baru"
           element={<HalamanCatatLamaran applications={applications} onTambah={tambahLamaran} />}

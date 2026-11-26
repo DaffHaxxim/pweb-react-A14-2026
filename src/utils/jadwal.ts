@@ -51,3 +51,12 @@ export function cariBentrokInterview(applications: Application[]): PasanganBentr
 
   return hasil;
 }
+
+// Waktu interview dalam milidetik untuk keperluan sorting "Jadwal Interview Terdekat".
+// Lamaran yang tidak sedang INTERVIEW ditaruh paling bawah (nilai sangat besar).
+export function waktuInterview(lamaran: Application): number {
+  if (lamaran.status !== "INTERVIEW" || !lamaran.interviewDateTime) {
+    return Number.MAX_SAFE_INTEGER;
+  }
+  return new Date(lamaran.interviewDateTime).getTime();
+}
