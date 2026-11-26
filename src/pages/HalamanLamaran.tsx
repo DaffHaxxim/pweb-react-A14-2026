@@ -19,6 +19,7 @@ interface HalamanLamaranProps {
   onHapusChecklist: (id: string, idItem: string) => void;
   onTambahCatatan: (id: string, teks: string) => void;
   onHapus: (id: string) => void;
+  onMuatContoh: () => void;
 }
 
 type Urutan = "terbaru" | "interview" | "offer";
@@ -34,6 +35,7 @@ export function HalamanLamaran({
   onHapusChecklist,
   onTambahCatatan,
   onHapus,
+  onMuatContoh,
 }: HalamanLamaranProps) {
   // State filter (hanya memengaruhi tampilan, data asli di App tidak berubah)
   const [cari, setCari] = useState("");
@@ -139,6 +141,9 @@ export function HalamanLamaran({
             >
               + Catat Lamaran
             </Link>
+            <Tombol varian="kedua" ukuran="kecil" onClick={onMuatContoh}>
+              Muat Data Contoh
+            </Tombol>
           </div>
         </div>
       ) : hasilAkhir.length === 0 ? (

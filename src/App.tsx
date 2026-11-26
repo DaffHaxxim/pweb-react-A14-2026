@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router";
+import { buatDataContoh } from "./data/contohLamaran";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { TataLetak } from "./layouts/TataLetak";
 import { HalamanCatatLamaran } from "./pages/HalamanCatatLamaran";
@@ -238,6 +239,11 @@ export default function App() {
     timerUndoRef.current = null;
   };
 
+  // ===== Bonus: isi data contoh untuk demo (hanya dipakai saat daftar lamaran kosong) =====
+  const muatDataContoh = () => {
+    setApplications(buatDataContoh());
+  };
+
   // ===== Tabel route =====
   return (
     <Routes>
@@ -282,6 +288,7 @@ export default function App() {
               onHapusChecklist={hapusChecklist}
               onTambahCatatan={tambahCatatan}
               onHapus={hapusLamaran}
+              onMuatContoh={muatDataContoh}
             />
           }
         />
