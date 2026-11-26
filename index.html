@@ -11,6 +11,15 @@
       rel="stylesheet"
     />
     <title>Aku Mw Magang</title>
+    <script>
+      // Pasang tema tersimpan sebelum React dimuat, supaya halaman tidak sempat
+      // tampil dengan tema bawaan lalu berkedip saat tema Gelap dipilih.
+      try {
+        document.documentElement.dataset.tema = JSON.parse(localStorage.getItem("akumwmagang-tema")) || "emas";
+      } catch {
+        document.documentElement.dataset.tema = "emas";
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

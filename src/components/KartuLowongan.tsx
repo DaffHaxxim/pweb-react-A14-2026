@@ -18,10 +18,10 @@ export function KartuLowongan({ job, match, sudahAda, onSimpan }: KartuLowonganP
   const sisaTag = job.tags.length - tagTampil.length;
 
   return (
-    <article className="flex flex-col gap-3 border-2 border-hitam bg-latar p-4">
+    <article className="flex flex-col gap-3 border-2 border-tepi bg-latar p-4">
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="grid h-10 w-10 shrink-0 place-items-center bg-hitam font-mono text-sm font-semibold text-kuning">
+          <span className="grid h-10 w-10 shrink-0 place-items-center bg-pekat font-mono text-sm font-semibold text-aksen">
             {inisial(job.company_name)}
           </span>
           <div className="min-w-0">
@@ -37,7 +37,7 @@ export function KartuLowongan({ job, match, sudahAda, onSimpan }: KartuLowonganP
         <p className="mt-0.5 text-xs tracking-wide text-redup uppercase">{job.category}</p>
       </div>
 
-      {/* Skill cocok (kotak kuning) ditaruh di depan, skill missing (garis putus merah) di belakang.
+      {/* Skill cocok (kotak warna aksen) ditaruh di depan, skill missing (garis putus merah) di belakang.
           Lowongan Remotive bisa punya 20+ tag, jadi hanya 10 tag pertama yang ditampilkan. */}
       <ul className="flex flex-wrap gap-1.5">
         {tagTampil.map((tag) => (
@@ -45,7 +45,7 @@ export function KartuLowongan({ job, match, sudahAda, onSimpan }: KartuLowonganP
             key={tag}
             className={
               match.cocok.includes(tag)
-                ? "border border-hitam bg-kuning-muda px-1.5 py-0.5 text-xs font-medium"
+                ? "border border-tepi bg-aksen-muda px-1.5 py-0.5 text-xs font-medium"
                 : "border border-dashed border-bahaya px-1.5 py-0.5 text-xs font-medium text-bahaya"
             }
           >
@@ -81,7 +81,7 @@ export function KartuLowongan({ job, match, sudahAda, onSimpan }: KartuLowonganP
               href={job.url}
               target="_blank"
               rel="noreferrer"
-              className="shrink-0 text-xs font-semibold text-cokelat underline hover:text-oranye"
+              className="shrink-0 text-xs font-semibold text-sekunder underline hover:text-sorot"
             >
               Lihat di Remotive
             </a>

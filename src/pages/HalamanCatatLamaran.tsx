@@ -26,7 +26,7 @@ export function HalamanCatatLamaran({ applications, onTambah }: HalamanCatatLama
             Untuk lowongan yang tidak ada di daftar eksplorasi. Pasangan perusahaan + posisi tidak boleh sama.
           </p>
         </div>
-        <Link to="/lamaran" className="text-sm font-semibold text-cokelat underline hover:text-oranye">
+        <Link to="/lamaran" className="text-sm font-semibold text-sekunder underline hover:text-sorot">
           Kembali ke Pipeline
         </Link>
       </div>

@@ -24,9 +24,9 @@ export function KartuLamaran({ lamaran, persenMatch, onSimulasi, onDetail, onHap
   const bisaDisimulasi = lamaran.status === "APPLIED" || lamaran.status === "SCREENING";
 
   return (
-    <article className="flex flex-col gap-3 border-2 border-hitam bg-latar p-4">
+    <article className="flex flex-col gap-3 border-2 border-tepi bg-latar p-4">
       <div className="flex items-start gap-3">
-        <span className="grid h-10 w-10 shrink-0 place-items-center bg-hitam font-mono text-sm font-semibold text-kuning">
+        <span className="grid h-10 w-10 shrink-0 place-items-center bg-pekat font-mono text-sm font-semibold text-aksen">
           {inisial(lamaran.company)}
         </span>
         <div className="min-w-0 flex-1">
@@ -65,8 +65,8 @@ export function KartuLamaran({ lamaran, persenMatch, onSimulasi, onDetail, onHap
       </dl>
 
       {/* Lebar bar memakai style karena nilainya dinamis (bukan kelas Tailwind) */}
-      <div className="h-2 border border-hitam bg-permukaan">
-        <div className="h-full bg-oranye" style={{ width: `${persenChecklist}%` }} />
+      <div className="h-2 border border-tepi bg-permukaan">
+        <div className="h-full bg-sorot" style={{ width: `${persenChecklist}%` }} />
       </div>
 
       <div className="mt-auto flex flex-wrap gap-2 border-t-2 border-garis pt-3">

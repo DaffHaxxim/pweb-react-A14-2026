@@ -13,10 +13,10 @@ interface TombolProps {
 }
 
 const GAYA_VARIAN = {
-  utama: "border-hitam bg-kuning text-hitam hover:bg-emas",
-  kedua: "border-hitam bg-latar text-hitam hover:bg-kuning-muda",
+  utama: "border-tepi bg-aksen text-di-aksen hover:bg-aksen-tua",
+  kedua: "border-tepi bg-latar text-teks hover:bg-aksen-muda",
   bahaya: "border-bahaya bg-latar text-bahaya hover:bg-bahaya-muda",
-  gelap: "border-hitam bg-hitam text-latar hover:bg-cokelat-tua",
+  gelap: "border-tepi bg-pekat text-di-pekat hover:bg-pekat/85",
 };
 
 const GAYA_UKURAN = {

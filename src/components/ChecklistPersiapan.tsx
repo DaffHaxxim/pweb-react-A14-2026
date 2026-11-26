@@ -35,8 +35,8 @@ export function ChecklistPersiapan({ checklist, onTambah, onCentang, onHapus }: 
       </div>
 
       {/* Lebar bar memakai style karena nilainya dinamis */}
-      <div className="mb-3 h-2.5 border border-hitam bg-permukaan">
-        <div className="h-full bg-oranye transition-all" style={{ width: `${persen}%` }} />
+      <div className="mb-3 h-2.5 border border-tepi bg-permukaan">
+        <div className="h-full bg-sorot transition-all" style={{ width: `${persen}%` }} />
       </div>
 
       {checklist.length === 0 ? (
@@ -50,7 +50,7 @@ export function ChecklistPersiapan({ checklist, onTambah, onCentang, onHapus }: 
                 checked={item.done}
                 onChange={() => onCentang(item.id)}
                 aria-label={`Tandai selesai: ${item.text}`}
-                className="h-4 w-4 accent-oranye"
+                className="h-4 w-4 accent-sorot"
               />
               <span className={item.done ? "flex-1 text-sm text-redup line-through" : "flex-1 text-sm"}>
                 {item.text}

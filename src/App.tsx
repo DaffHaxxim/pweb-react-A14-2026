@@ -18,6 +18,7 @@ import type {
   DataPindahStatus,
 } from "./types/lamaran";
 import type { JobListing, SumberData } from "./types/lowongan";
+import type { NamaTema } from "./types/tema";
 import { formatRupiah, formatTanggalJam } from "./utils/format";
 import { mundurkanHari } from "./utils/jadwal";
 import { buatId, buatLamaranBaru, buatLog, sudahDilamar, tebakModeKerja } from "./utils/lamaran";
@@ -31,6 +32,15 @@ export default function App() {
   // Keduanya memakai Custom Hook useLocalStorage supaya tetap ada setelah refresh.
   const [applications, setApplications] = useLocalStorage<Application[]>("akumwmagang-applications", []);
   const [kaptenSkills, setKaptenSkills] = useLocalStorage<string[]>("akumwmagang-kapten-skills", SKILL_AWAL);
+
+  // ===== Bonus: tema warna (ikut tersimpan di localStorage) =====
+  const [tema, setTema] = useLocalStorage<NamaTema>("akumwmagang-tema", "emas");
+
+  // Mengubah atribut <html data-tema="..."> adalah side effect ke DOM, jadi ditaruh di useEffect.
+  // CSS di index.css lalu mengganti isi token warna sesuai tema.
+  useEffect(() => {
+    document.documentElement.dataset.tema = tema;
+  }, [tema]);
 
   // ===== State data lowongan (pola data / isLoading / error dari materi) =====
   const [lowongan, setLowongan] = useState<JobListing[]>([]);
@@ -261,6 +271,8 @@ export default function App() {
             applications={applications}
             lamaranTerhapus={lamaranTerhapus}
             onBatalkanHapus={batalkanHapus}
+            tema={tema}
+            onGantiTema={setTema}
           />
         }
       >

@@ -29,37 +29,37 @@ export function RingkasanStatistik({ applications }: { applications: Application
   const jumlahOffer = applications.filter((lamaran) => lamaran.status === "OFFER").length;
 
   const daftarKartu = [
-    { judul: "Total Lamaran", nilai: String(total), keterangan: `${jumlahWishlist} di tahap wishlist`, warna: "text-hitam" },
+    { judul: "Total Lamaran", nilai: String(total), keterangan: `${jumlahWishlist} di tahap wishlist`, warna: "text-teks" },
     {
       judul: "Response Rate",
       nilai: `${responseRate}%`,
       keterangan: `${dapatRespons} dari ${terkirim.length} terkirim`,
-      warna: "text-cokelat",
+      warna: "text-sekunder",
     },
     {
       judul: "Interview Rate",
       nilai: `${interviewRate}%`,
       keterangan: `${pernahInterview} pernah interview`,
-      warna: "text-cokelat",
+      warna: "text-sekunder",
     },
     {
       judul: "Rawan Ghosting",
       nilai: String(jumlahGhosting),
       keterangan: "> 14 hari tanpa kabar",
-      warna: jumlahGhosting > 0 ? "text-oranye" : "text-hitam",
+      warna: jumlahGhosting > 0 ? "text-sorot" : "text-teks",
     },
     {
       judul: "Total Offer",
       nilai: String(jumlahOffer),
       keterangan: jumlahOffer >= 2 ? "Siap dibandingkan" : "Butuh 2 untuk dibandingkan",
-      warna: jumlahOffer > 0 ? "text-berhasil" : "text-hitam",
+      warna: jumlahOffer > 0 ? "text-berhasil" : "text-teks",
     },
   ];
 
   return (
     <section aria-label="Statistik lamaran" className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
       {daftarKartu.map((kartu) => (
-        <div key={kartu.judul} className="border-2 border-hitam bg-latar p-3">
+        <div key={kartu.judul} className="border-2 border-tepi bg-latar p-3">
           <p className="text-xs font-bold tracking-widest text-redup uppercase">{kartu.judul}</p>
           <p className={`mt-1 font-mono text-3xl font-semibold ${kartu.warna}`}>{kartu.nilai}</p>
           <p className="text-xs text-redup">{kartu.keterangan}</p>

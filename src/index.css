@@ -1,39 +1,52 @@
 @import "tailwindcss";
 
-/* Tema "Aku Mw Magang": latar putih dengan aksen kuning, emas, oranye, cokelat, dan hitam.
-   Setiap token di bawah otomatis menjadi kelas Tailwind,
-   misalnya --color-oranye menjadi bg-oranye, text-oranye, dan border-oranye. */
+/* Warna aplikasi diberi nama sesuai PERAN-nya (latar, tepi, aksen, ...), bukan nama warnanya,
+   karena isinya berganti mengikuti tema yang dipilih (Emas, Gelap, Baja).
+   Setiap token otomatis menjadi kelas Tailwind, misalnya --color-aksen menjadi
+   bg-aksen, text-aksen, dan border-aksen. Nilai di bawah ini adalah tema bawaan "Emas". */
 @theme {
   /* Font: IBM Plex dimuat dari Google Fonts di index.html */
   --font-sans: "IBM Plex Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Permukaan */
-  --color-latar: #ffffff;
-  --color-permukaan: #fffaf0;
-  --color-garis: #e7d9c3;
+  /* Permukaan dan garis */
+  --color-latar: #ffffff; /* latar halaman dan kartu */
+  --color-permukaan: #fffaf0; /* latar panel/bilah yang sedikit berbeda */
+  --color-garis: #e7d9c3; /* garis pemisah tipis */
+  --color-tepi: #17120d; /* garis tepi tegas pada kotak, input, tombol */
 
   /* Teks */
   --color-teks: #17120d;
-  --color-redup: #6b5a48;
+  --color-redup: #6b5a48; /* teks keterangan */
 
-  /* Aksen */
-  --color-kuning-muda: #fef6d8;
-  --color-kuning-lembut: #fde9a6;
-  --color-kuning: #f5c518;
-  --color-emas: #c9971c;
-  --color-oranye-muda: #fde9d9;
-  --color-oranye: #e8650a;
-  --color-oranye-tua: #b84d06;
-  --color-cokelat: #7a4a21;
-  --color-cokelat-tua: #4a2c14;
-  --color-hitam: #17120d;
+  /* Permukaan pekat (kotak logo, tombol gelap, toast) dan teks di atasnya */
+  --color-pekat: #17120d;
+  --color-di-pekat: #ffffff;
 
-  /* Status (hijau dan merah tetap dipakai karena diminta soal untuk badge Match) */
+  /* Aksen utama (di tema Emas: kuning) */
+  --color-aksen: #f5c518;
+  --color-aksen-tua: #c9971c; /* hover tombol aksen dan garis badge */
+  --color-aksen-muda: #fef6d8; /* latar lembut (chip skill, badge, panel latihan) */
+  --color-aksen-lembut: #fde9a6; /* sorotan pilihan dropdown */
+  --color-di-aksen: #17120d; /* teks di atas latar aksen */
+  --color-teks-aksen: #4a2c14; /* teks di atas latar aksen-muda */
+
+  /* Aksen kedua (di tema Emas: oranye): progress bar, fokus, badge ghosting */
+  --color-sorot: #e8650a;
+  --color-sorot-muda: #fde9d9;
+  --color-teks-sorot: #b84d06;
+
+  /* Warna sekunder (di tema Emas: cokelat): judul panel dan tautan */
+  --color-sekunder: #7a4a21;
+
+  /* Status. Hijau, kuning, dan merah wajib ada di SEMUA tema karena diminta soal untuk badge Match */
   --color-berhasil: #4f7a12;
   --color-berhasil-muda: #eef5dc;
   --color-bahaya: #b3261e;
   --color-bahaya-muda: #fde7e4;
+  --color-peringatan: #c9971c;
+  --color-peringatan-muda: #fef6d8;
+  --color-teks-peringatan: #4a2c14;
 
   /* Animasi muncul untuk toast dan modal */
   --animate-muncul: muncul 0.18s ease-out;
@@ -57,18 +70,18 @@
     background: var(--color-latar);
     color: var(--color-teks);
     font-family: var(--font-sans);
-    /* Garis gradasi kuning ke cokelat di tepi atas halaman */
-    border-top: 6px solid var(--color-kuning);
-    border-image: linear-gradient(90deg, var(--color-kuning), var(--color-oranye), var(--color-cokelat)) 1;
+    /* Garis gradasi aksen -> sorot -> sekunder di tepi atas halaman */
+    border-top: 6px solid var(--color-aksen);
+    border-image: linear-gradient(90deg, var(--color-aksen), var(--color-sorot), var(--color-sekunder)) 1;
   }
 
   button:not(:disabled) {
     cursor: pointer;
   }
 
-  /* Garis fokus oranye untuk navigasi keyboard */
+  /* Garis fokus (warna sorot) untuk navigasi keyboard */
   :focus-visible {
-    outline: 2px solid var(--color-oranye);
+    outline: 2px solid var(--color-sorot);
     outline-offset: 2px;
   }
 
@@ -81,13 +94,14 @@
     appearance: base-select;
   }
 
-  /* Kotak daftar pilihan: sudut tajam, garis hitam, tanpa bayangan */
+  /* Kotak daftar pilihan: sudut tajam, garis tepi tegas, tanpa bayangan */
   ::picker(select) {
     margin-top: 2px;
     padding: 0;
-    border: 2px solid var(--color-hitam);
+    border: 2px solid var(--color-tepi);
     border-radius: 0;
     background: var(--color-latar);
+    color: var(--color-teks);
     box-shadow: none;
   }
 
@@ -98,14 +112,14 @@
 
   /* Pilihan yang sedang aktif */
   select option:checked {
-    background: var(--color-kuning-muda);
+    background: var(--color-aksen-muda);
     font-weight: 600;
   }
 
-  /* Pilihan yang sedang disorot mouse/keyboard: kuning lembut (bukan biru bawaan) */
+  /* Pilihan yang sedang disorot mouse/keyboard: warna aksen lembut (bukan biru bawaan) */
   select option:hover,
   select option:focus-visible {
-    background: var(--color-kuning-lembut);
+    background: var(--color-aksen-lembut);
     color: var(--color-teks);
     outline: none;
   }
@@ -113,5 +127,75 @@
   /* Tanda centang bawaan tidak dipakai; pilihan aktif sudah ditandai warna dan huruf tebal */
   select option::checkmark {
     display: none;
+  }
+}
+
+/* ===== Tema pilihan =====
+   Tema dipasang lewat atribut data-tema pada <html> (diatur oleh App.tsx).
+   Setiap tema cukup mengganti isi token warna; kelas Tailwind di komponen tidak berubah.
+   color-scheme membuat elemen bawaan browser (kalender, scrollbar) ikut terang/gelap. */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  /* Tema Gelap: latar arang seperti pemutar musik AIMP, dengan aksen emas dan oranye */
+  :root[data-tema="gelap"] {
+    color-scheme: dark;
+    --color-latar: #1e1d1b;
+    --color-permukaan: #262421;
+    --color-garis: #36322d;
+    --color-tepi: #4a443d;
+    --color-teks: #ebe6de;
+    --color-redup: #a69d91;
+    --color-pekat: #2f2b27;
+    --color-di-pekat: #f3eee7;
+    --color-aksen: #f2b632;
+    --color-aksen-tua: #d89c1c;
+    --color-aksen-muda: #3a2f17;
+    --color-aksen-lembut: #4d3d1a;
+    --color-di-aksen: #1b1408;
+    --color-teks-aksen: #f6d58e;
+    --color-sorot: #f0892b;
+    --color-sorot-muda: #3f2716;
+    --color-teks-sorot: #f7ad6b;
+    --color-sekunder: #d9ab73;
+    --color-berhasil: #9bcf5e;
+    --color-berhasil-muda: #22301a;
+    --color-bahaya: #f28b7f;
+    --color-bahaya-muda: #3d1f1b;
+    --color-peringatan: #d89c1c;
+    --color-peringatan-muda: #3a2f17;
+    --color-teks-peringatan: #f6d58e;
+  }
+
+  /* Tema Baja: tetap dominan putih, dengan gradasi abu-abu seperti baja matte */
+  :root[data-tema="baja"] {
+    color-scheme: light;
+    --color-latar: #ffffff;
+    --color-permukaan: #f3f4f5;
+    --color-garis: #dcdfe2;
+    --color-tepi: #3f454c;
+    --color-teks: #1d2125;
+    --color-redup: #6b7279;
+    --color-pekat: #2f343a;
+    --color-di-pekat: #ffffff;
+    --color-aksen: #c9ced3;
+    --color-aksen-tua: #b3b9bf;
+    --color-aksen-muda: #eef0f2;
+    --color-aksen-lembut: #e2e5e8;
+    --color-di-aksen: #1d2125;
+    --color-teks-aksen: #3a4047;
+    --color-sorot: #6c7a87;
+    --color-sorot-muda: #e6eaee;
+    --color-teks-sorot: #46525d;
+    --color-sekunder: #4f5861;
+    --color-berhasil: #4b7a3a;
+    --color-berhasil-muda: #e8f1e3;
+    --color-bahaya: #a83a32;
+    --color-bahaya-muda: #f8e6e4;
+    --color-peringatan: #b8860b;
+    --color-peringatan-muda: #fdf3d0;
+    --color-teks-peringatan: #5c4300;
   }
 }

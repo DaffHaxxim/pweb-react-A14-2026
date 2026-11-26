@@ -66,7 +66,7 @@ export function PindahStatus({ lamaran, onPindah }: PindahStatusProps) {
   };
 
   return (
-    <form onSubmit={handleKonfirmasi} noValidate className="space-y-3 border-2 border-hitam bg-permukaan p-3">
+    <form onSubmit={handleKonfirmasi} noValidate className="space-y-3 border-2 border-tepi bg-permukaan p-3">
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-sm font-semibold">Pindahkan status ke:</span>
         {pilihanTujuan.map((status) => (

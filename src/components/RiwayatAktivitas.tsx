@@ -38,7 +38,7 @@ export function RiwayatAktivitas({ logs, onTambahCatatan }: RiwayatAktivitasProp
         </Tombol>
       </form>
 
-      <ol className="max-h-64 space-y-2 overflow-y-auto border-l-2 border-hitam pl-3">
+      <ol className="max-h-64 space-y-2 overflow-y-auto border-l-2 border-tepi pl-3">
         {logs.map((log) => (
           <li key={log.id} className="text-sm">
             <p className="font-mono text-xs text-redup">{formatTanggalJam(log.timestamp)}</p>

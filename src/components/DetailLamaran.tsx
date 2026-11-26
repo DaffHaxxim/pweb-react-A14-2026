@@ -46,17 +46,17 @@ export function DetailLamaran({
 
   return (
     // Lapisan gelap di belakang modal
-    <div className="fixed inset-0 z-40 flex items-start justify-center overflow-y-auto bg-hitam/60 p-3 md:p-6">
+    <div className="fixed inset-0 z-40 flex items-start justify-center overflow-y-auto bg-black/60 p-3 md:p-6">
       <section
         role="dialog"
         aria-modal="true"
         aria-label={`Detail lamaran ${lamaran.company}`}
-        className="w-full max-w-5xl animate-muncul border-2 border-hitam bg-latar"
+        className="w-full max-w-5xl animate-muncul border-2 border-tepi bg-latar"
       >
         {/* ===== Header modal ===== */}
-        <header className="flex flex-wrap items-start justify-between gap-3 border-b-2 border-hitam bg-permukaan p-4">
+        <header className="flex flex-wrap items-start justify-between gap-3 border-b-2 border-tepi bg-permukaan p-4">
           <div className="flex min-w-0 items-start gap-3">
-            <span className="grid h-12 w-12 shrink-0 place-items-center bg-hitam font-mono font-semibold text-kuning">
+            <span className="grid h-12 w-12 shrink-0 place-items-center bg-pekat font-mono font-semibold text-aksen">
               {inisial(lamaran.company)}
             </span>
             <div className="min-w-0">
@@ -93,7 +93,7 @@ export function DetailLamaran({
 
         <div className="grid grid-cols-1 lg:grid-cols-5">
           {/* ===== Kolom kiri: tahap seleksi + pindah status + checklist ===== */}
-          <div className="space-y-5 p-4 lg:col-span-3 lg:border-r-2 lg:border-hitam">
+          <div className="space-y-5 p-4 lg:col-span-3 lg:border-r-2 lg:border-tepi">
             <section>
               <h3 className={KELAS_JUDUL_PANEL}>Tahap Seleksi</h3>
               <ol className="mb-3 grid grid-cols-5 gap-1">
@@ -102,7 +102,7 @@ export function DetailLamaran({
                     key={tahap}
                     className={
                       index <= indexTahap
-                        ? "border-t-4 border-oranye pt-1 text-xs font-semibold"
+                        ? "border-t-4 border-sorot pt-1 text-xs font-semibold"
                         : "border-t-4 border-garis pt-1 text-xs text-redup"
                     }
                   >

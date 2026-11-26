@@ -4,12 +4,12 @@ import { LABEL_STATUS } from "../utils/statusLamaran";
 // Warna badge untuk setiap status (kelas ditulis utuh agar terbaca Tailwind)
 const GAYA_STATUS: Record<ApplicationStatus, string> = {
   WISHLIST: "border-garis bg-permukaan text-redup",
-  APPLIED: "border-emas bg-kuning-muda text-cokelat-tua",
-  SCREENING: "border-oranye bg-oranye-muda text-oranye-tua",
-  INTERVIEW: "border-hitam bg-kuning text-hitam",
+  APPLIED: "border-aksen-tua bg-aksen-muda text-teks-aksen",
+  SCREENING: "border-sorot bg-sorot-muda text-teks-sorot",
+  INTERVIEW: "border-tepi bg-aksen text-di-aksen",
   OFFER: "border-berhasil bg-berhasil-muda text-berhasil",
   REJECTED: "border-bahaya bg-bahaya-muda text-bahaya",
-  GHOSTED: "border-cokelat bg-cokelat text-latar",
+  GHOSTED: "border-sekunder bg-sekunder text-latar",
 };
 
 export function BadgeStatus({ status }: { status: ApplicationStatus }) {
@@ -23,7 +23,7 @@ export function BadgeStatus({ status }: { status: ApplicationStatus }) {
 // Badge peringatan untuk lamaran yang Rawan Ghosting (> 14 hari tanpa kabar)
 export function BadgeGhosting({ hari }: { hari: number }) {
   return (
-    <span className="inline-block border-2 border-oranye-tua bg-oranye px-2 py-0.5 text-xs font-bold tracking-wide text-latar uppercase">
+    <span className="inline-block border-2 border-sorot bg-sorot px-2 py-0.5 text-xs font-bold tracking-wide text-latar uppercase">
       Rawan Ghosting · {hari} hari
     </span>
   );

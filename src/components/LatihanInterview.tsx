@@ -52,7 +52,7 @@ export function LatihanInterview() {
   };
 
   return (
-    <section className="border-2 border-hitam bg-kuning-muda p-4">
+    <section className="border-2 border-tepi bg-aksen-muda p-4">
       <div className="flex items-center justify-between">
         <h3 className={KELAS_JUDUL_PANEL}>Latihan Interview</h3>
         <span className="mb-3 font-mono text-xs font-semibold">
@@ -67,7 +67,7 @@ export function LatihanInterview() {
           className={
             waktuHabis
               ? "font-mono text-4xl font-semibold text-bahaya"
-              : "font-mono text-4xl font-semibold text-hitam"
+              : "font-mono text-4xl font-semibold text-teks"
           }
           aria-live="polite"
         >

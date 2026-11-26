@@ -115,7 +115,7 @@ export function HalamanLowongan({
                 name="sumber"
                 checked={sumberData === "remotive"}
                 onChange={() => onGantiSumber("remotive")}
-                className="accent-oranye"
+                className="accent-sorot"
               />
               Remotive API (Live)
             </label>
@@ -125,7 +125,7 @@ export function HalamanLowongan({
                 name="sumber"
                 checked={sumberData === "lokal"}
                 onChange={() => onGantiSumber("lokal")}
-                className="accent-oranye"
+                className="accent-sorot"
               />
               Dataset Magang (Lokal)
             </label>

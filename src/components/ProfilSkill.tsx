@@ -60,14 +60,14 @@ export function ProfilSkill({ skills, onTambah, onHapus }: ProfilSkillProps) {
           {skills.map((skill) => (
             <li
               key={skill}
-              className="flex items-center gap-1 border-2 border-hitam bg-kuning-muda py-0.5 pr-1 pl-2 text-xs font-semibold"
+              className="flex items-center gap-1 border-2 border-tepi bg-aksen-muda py-0.5 pr-1 pl-2 text-xs font-semibold"
             >
               {skill}
               <button
                 type="button"
                 onClick={() => onHapus(skill)}
                 aria-label={`Hapus skill ${skill}`}
-                className="px-1 text-redup hover:bg-hitam hover:text-latar"
+                className="px-1 text-redup hover:bg-pekat hover:text-di-pekat"
               >
                 ×
               </button>

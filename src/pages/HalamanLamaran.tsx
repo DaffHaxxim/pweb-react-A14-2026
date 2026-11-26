@@ -85,7 +85,7 @@ export function HalamanLamaran({
       </div>
 
       {/* ===== Filter gabungan ===== */}
-      <div className="grid grid-cols-1 items-center gap-2 border-2 border-hitam bg-permukaan p-3 md:grid-cols-4">
+      <div className="grid grid-cols-1 items-center gap-2 border-2 border-tepi bg-permukaan p-3 md:grid-cols-4">
         <input
           type="search"
           value={cari}
@@ -122,7 +122,7 @@ export function HalamanLamaran({
             type="checkbox"
             checked={hanyaGhosting}
             onChange={(e) => setHanyaGhosting(e.target.checked)}
-            className="h-4 w-4 accent-oranye"
+            className="h-4 w-4 accent-sorot"
           />
           Hanya Rawan Ghosting
         </label>
@@ -142,7 +142,7 @@ export function HalamanLamaran({
           <div className="mt-3 flex flex-wrap gap-2">
             <Link
               to="/lamaran/baru"
-              className="border-2 border-hitam bg-kuning px-3 py-1 text-xs font-semibold hover:bg-emas"
+              className="border-2 border-tepi bg-aksen px-3 py-1 text-xs font-semibold text-di-aksen hover:bg-aksen-tua"
             >
               + Catat Lamaran
             </Link>

@@ -33,7 +33,7 @@ export function HalamanOffer({ applications, kaptenSkills }: HalamanOfferProps) 
           </p>
           <Link
             to="/lamaran"
-            className="mt-3 inline-block border-2 border-hitam bg-kuning px-3 py-1 text-xs font-semibold hover:bg-emas"
+            className="mt-3 inline-block border-2 border-tepi bg-aksen px-3 py-1 text-xs font-semibold text-di-aksen hover:bg-aksen-tua"
           >
             Buka War Room
           </Link>
@@ -64,7 +64,7 @@ export function HalamanOffer({ applications, kaptenSkills }: HalamanOfferProps) 
       </div>
 
       {/* Pilih dua offer yang ingin dibandingkan */}
-      <div className="flex flex-col gap-2 border-2 border-hitam bg-permukaan p-3 md:flex-row md:items-center">
+      <div className="flex flex-col gap-2 border-2 border-tepi bg-permukaan p-3 md:flex-row md:items-center">
         <div className="flex-1">
           <select
             value={offerA.id}
@@ -97,7 +97,7 @@ export function HalamanOffer({ applications, kaptenSkills }: HalamanOfferProps) 
       </div>
 
       {totalA === totalB && (
-        <p className="border-2 border-emas bg-kuning-muda p-2 text-sm">Skor kedua offer sama. Pilih berdasarkan pertimbangan lain.</p>
+        <p className="border-2 border-aksen-tua bg-aksen-muda p-2 text-sm">Skor kedua offer sama. Pilih berdasarkan pertimbangan lain.</p>
       )}
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -144,8 +144,8 @@ function KartuSkorOffer({ offer, skor, kaptenSkills, terbaik }: KartuSkorOfferPr
     <article
       className={
         terbaik
-          ? "border-4 border-oranye bg-latar p-4"
-          : "border-2 border-hitam bg-latar p-4"
+          ? "border-4 border-sorot bg-latar p-4"
+          : "border-2 border-tepi bg-latar p-4"
       }
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
@@ -154,7 +154,7 @@ function KartuSkorOffer({ offer, skor, kaptenSkills, terbaik }: KartuSkorOfferPr
           <p className="text-sm text-redup">{offer.role}</p>
         </div>
         {terbaik && (
-          <span className="border-2 border-hitam bg-kuning px-2 py-0.5 text-xs font-bold uppercase">
+          <span className="border-2 border-tepi bg-aksen px-2 py-0.5 text-xs font-bold text-di-aksen uppercase">
             ★ Rekomendasi Terbaik
           </span>
         )}
@@ -175,8 +175,8 @@ function KartuSkorOffer({ offer, skor, kaptenSkills, terbaik }: KartuSkorOfferPr
       <div
         className={
           terbaik
-            ? "mt-4 flex items-center justify-between border-2 border-hitam bg-kuning p-3"
-            : "mt-4 flex items-center justify-between border-2 border-hitam bg-permukaan p-3"
+            ? "mt-4 flex items-center justify-between border-2 border-tepi bg-aksen p-3 text-di-aksen"
+            : "mt-4 flex items-center justify-between border-2 border-tepi bg-permukaan p-3"
         }
       >
         <span className="text-xs font-bold tracking-widest uppercase">Total Skor Berbobot</span>
