@@ -8,6 +8,9 @@
     "allowArbitraryExtensions": true,
     "skipLibCheck": true,
 
+    /* Wajib dari soal: TypeScript mode ketat (strict) */
+    "strict": true,
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
