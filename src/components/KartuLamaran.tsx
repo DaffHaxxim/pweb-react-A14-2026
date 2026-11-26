@@ -30,7 +30,7 @@ export function KartuLamaran({ lamaran, persenMatch, onSimulasi, onDetail, onHap
           {inisial(lamaran.company)}
         </span>
         <div className="min-w-0 flex-1">
-          <p className="truncate font-bold">{lamaran.role}</p>
+          <p className="leading-snug font-bold">{lamaran.role}</p>
           <p className="truncate text-sm text-redup">
             {lamaran.company} · {lamaran.workMode}
           </p>

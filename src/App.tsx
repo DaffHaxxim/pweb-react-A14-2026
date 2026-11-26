@@ -9,6 +9,7 @@ import { HalamanLowongan } from "./pages/HalamanLowongan";
 import { HalamanOffer } from "./pages/HalamanOffer";
 import { HalamanTidakDitemukan } from "./pages/HalamanTidakDitemukan";
 import { ambilLowongan } from "./services/jobService";
+import type { DataCadangan } from "./utils/cadangan";
 import type {
   Application,
   ApplicationStatus,
@@ -244,6 +245,12 @@ export default function App() {
     setApplications(buatDataContoh());
   };
 
+  // ===== Bonus: impor backup JSON (mengganti seluruh data) =====
+  const gantiSemuaData = (data: DataCadangan) => {
+    setApplications(data.applications);
+    setKaptenSkills(data.kaptenSkills);
+  };
+
   // ===== Tabel route =====
   return (
     <Routes>
@@ -289,6 +296,7 @@ export default function App() {
               onTambahCatatan={tambahCatatan}
               onHapus={hapusLamaran}
               onMuatContoh={muatDataContoh}
+              onImpor={gantiSemuaData}
             />
           }
         />

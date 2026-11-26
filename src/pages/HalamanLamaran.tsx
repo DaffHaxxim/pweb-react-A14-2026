@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { CadanganData } from "../components/CadanganData";
 import { DetailLamaran } from "../components/DetailLamaran";
 import { KELAS_INPUT, KELAS_PANEL } from "../components/gaya";
 import { KartuLamaran } from "../components/KartuLamaran";
 import { Tombol } from "../components/Tombol";
 import type { Application, ApplicationStatus, DataPindahStatus } from "../types/lamaran";
+import type { DataCadangan } from "../utils/cadangan";
 import { rawanGhosting, waktuInterview } from "../utils/jadwal";
 import { hitungSkillMatch } from "../utils/skillMatch";
 import { LABEL_STATUS, SEMUA_STATUS } from "../utils/statusLamaran";
@@ -20,6 +22,7 @@ interface HalamanLamaranProps {
   onTambahCatatan: (id: string, teks: string) => void;
   onHapus: (id: string) => void;
   onMuatContoh: () => void;
+  onImpor: (data: DataCadangan) => void;
 }
 
 type Urutan = "terbaru" | "interview" | "offer";
@@ -36,6 +39,7 @@ export function HalamanLamaran({
   onTambahCatatan,
   onHapus,
   onMuatContoh,
+  onImpor,
 }: HalamanLamaranProps) {
   // State filter (hanya memengaruhi tampilan, data asli di App tidak berubah)
   const [cari, setCari] = useState("");
@@ -77,6 +81,7 @@ export function HalamanLamaran({
           <h1 className="text-2xl font-bold">War Room Lamaran</h1>
           <p className="text-sm text-redup">Lacak setiap lamaran Kapten dari wishlist sampai offer.</p>
         </div>
+        <CadanganData applications={applications} kaptenSkills={kaptenSkills} onImpor={onImpor} />
       </div>
 
       {/* ===== Filter gabungan ===== */}
