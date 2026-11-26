@@ -304,6 +304,10 @@ Di setiap halaman selalu ada: banner **Jadwal Interview Bentrok** (jika ada), **
 | Ekspor JSON | Klik **Ekspor JSON** | File `aku-mw-magang-YYYY-MM-DD.json` terunduh berisi `kaptenSkills` dan `applications` |
 | Impor JSON | Kosongkan data, klik **Impor JSON**, pilih file hasil ekspor, setujui konfirmasi | Semua lamaran dan skill kembali; pesan *"N lamaran berhasil diimpor."* |
 | Impor file salah | Impor file teks yang bukan JSON | Pesan *"File bukan JSON yang valid."* dan data tidak berubah |
+| Tema Gelap | Pilih **Tema: Gelap** di header | Seluruh halaman berganti ke latar arang dengan aksen emas dan oranye; kalender input tanggal ikut gelap |
+| Tema Baja | Pilih **Tema: Baja** di header | Halaman tetap putih dengan garis dan aksen abu-abu baja; badge Match tetap hijau/kuning/merah |
+| Tema tersimpan | Pilih tema Gelap lalu tekan `F5` | Halaman langsung tampil gelap tanpa berkedip putih; pilihan tema tetap **Gelap** |
+| Tema di semua halaman | Buka setiap menu, modal detail, dan toast Undo dengan tiap tema | Semua teks tetap terbaca; tombol kuning berteks gelap, tombol pekat berteks terang |
 
 ## 9. Checklist Cepat Sebelum Demo
 

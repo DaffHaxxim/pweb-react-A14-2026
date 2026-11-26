@@ -11,7 +11,7 @@ Praktikum Pemrograman Web Modul 5, Kelompok A14.
 | Framework | React 19 + TypeScript (`strict: true`, tanpa tipe `any`) |
 | Build tool | Vite (template `react-ts`) |
 | Navigasi | React Router v7 (mode deklaratif) |
-| Styling | Tailwind CSS v4 dengan token tema di `src/index.css` |
+| Styling | Tailwind CSS v4 dengan token warna di `src/index.css` dan 3 tema (Emas, Gelap, Baja) |
 | State, fetch, form, timer, penyimpanan | React Hooks bawaan + Custom Hook buatan sendiri (`useLocalStorage`, `useDebounce`) |
 
 Tidak memakai library state management (Redux, Zustand, TanStack Query) maupun library form (React Hook Form, Formik).
@@ -59,7 +59,7 @@ public/
 src/
 ├── App.tsx                   State utama + semua handler + tabel route
 ├── main.tsx                  Titik masuk (BrowserRouter)
-├── index.css                 Tailwind + token warna tema
+├── index.css                 Tailwind + token warna + tema Gelap dan Baja
 ├── components/               Komponen UI (kartu, form, modal, badge, timer, dll.)
 ├── data/contohLamaran.ts     Data contoh untuk demo
 ├── hooks/                    useLocalStorage<T>, useDebounce<T>
@@ -78,6 +78,7 @@ Seluruh state yang dipakai lebih dari satu halaman diletakkan di `App.tsx`, di a
 |---|---|---|
 | `applications` | `useLocalStorage<Application[]>` | Semua lamaran, tersimpan di localStorage (`akumwmagang-applications`) |
 | `kaptenSkills` | `useLocalStorage<string[]>` | Skill Kapten (awal: React, TypeScript, CSS), tersimpan di localStorage (`akumwmagang-kapten-skills`) |
+| `tema` | `useLocalStorage<NamaTema>` | Tema warna terpilih (`akumwmagang-tema`), dipasang ke `<html data-tema>` lewat `useEffect` |
 | `lowongan`, `isLoading`, `error` | `useState` | Hasil fetch lowongan |
 | `sumberData`, `nomorMuat` | `useState` | Pilihan sumber dan pemicu muat ulang (dependency efek fetch) |
 | `lamaranTerhapus` + `timerUndoRef` | `useState` + `useRef` | Data dan ID timer untuk Undo Delete |
@@ -98,6 +99,7 @@ Komponen anak menerima data lewat props dan mengirim perubahan lewat fungsi call
 | Bonus: shortcut `/` | `pages/HalamanLowongan.tsx` |
 | Bonus: data contoh | `data/contohLamaran.ts` |
 | Bonus: ekspor/impor JSON | `components/CadanganData.tsx`, `utils/cadangan.ts` |
+| Bonus: tema warna | `components/PilihTema.tsx`, `types/tema.ts`, state `tema` di `App.tsx`, blok `data-tema` di `index.css` |
 
 ## Aturan Main yang Diterapkan
 
@@ -126,6 +128,31 @@ Tombol status hanya menampilkan tujuan yang sah, dan `pindahStatus` di `App.tsx`
 - **Response Rate** = lamaran berstatus SCREENING/INTERVIEW/OFFER/REJECTED dibagi lamaran terkirim (selain WISHLIST).
 - **Interview Rate** = lamaran terkirim yang punya jadwal interview dibagi lamaran terkirim.
 
+## Tema Warna
+
+Pilihan **Tema** ada di header dan tersimpan di localStorage.
+
+| Tema | Karakter |
+|---|---|
+| **Emas** (bawaan) | Latar putih, aksen kuning, emas, oranye, cokelat, garis hitam |
+| **Gelap** | Latar arang seperti pemutar musik AIMP, aksen emas dan oranye |
+| **Baja** | Tetap dominan putih, dengan gradasi abu-abu seperti baja matte |
+
+Cara kerjanya: setiap warna di `src/index.css` diberi nama sesuai **perannya**, bukan nama warnanya:
+
+| Token | Peran |
+|---|---|
+| `latar`, `permukaan` | Latar halaman dan panel |
+| `garis`, `tepi` | Garis pemisah tipis dan garis tepi tegas |
+| `teks`, `redup` | Teks utama dan teks keterangan |
+| `pekat`, `di-pekat` | Permukaan pekat (logo, tombol gelap, toast) dan teks di atasnya |
+| `aksen`, `aksen-tua`, `aksen-muda`, `aksen-lembut`, `di-aksen`, `teks-aksen` | Warna utama dan turunannya |
+| `sorot`, `sorot-muda`, `teks-sorot` | Warna kedua (progress bar, fokus, badge ghosting) |
+| `sekunder` | Judul panel dan tautan |
+| `berhasil`, `peringatan`, `bahaya` (+ `-muda`) | Hijau, kuning, merah; ada di semua tema karena diminta soal untuk badge Match |
+
+Kelas Tailwind seperti `bg-aksen` dikompilasi menjadi `background-color: var(--color-aksen)`. Tema Gelap dan Baja hanya mengganti nilai token lewat selektor `:root[data-tema="gelap"]` dan `:root[data-tema="baja"]`, jadi komponen tidak perlu diubah.
+
 ## Sumber Data
 
 - **Remotive API** (`https://remotive.com/api/remote-jobs?category=software-dev&limit=30`): gratis, tanpa API key. Sesuai ketentuan Remotive, setiap kartu menautkan kembali ke halaman lowongan di Remotive dan footer menyebut Remotive sebagai sumber. Remotive menyarankan maksimal sekitar 4 request per hari; fetch hanya terjadi saat aplikasi dibuka, sumber diganti, atau tombol muat ulang ditekan.
@@ -139,6 +166,7 @@ Tombol status hanya menampilkan tujuan yang sah, dan `pindahStatus` di `App.tsx`
 | `crypto.randomUUID()` | ID unik (disarankan soal; berjalan di `localhost` atau https) |
 | `Record<K, V>` | Tabel state machine dan peta warna/label |
 | React Router v7 dan Tailwind CSS v4 | Navigasi dan styling (materi minggu berikutnya) |
+| `document.documentElement.dataset` + skrip kecil di `index.html` | Bonus tema: memasang `data-tema` pada `<html>`; skrip dijalankan sebelum React agar tema Gelap tidak berkedip putih saat halaman dimuat |
 | `window.addEventListener("keydown")` | Bonus shortcut `/` |
 | `Blob`, `URL.createObjectURL`, `file.text()` | Bonus ekspor/impor JSON |
 | CSS `appearance: base-select` | Dropdown `<select>` bergaya tema (sorotan kuning muda) di browser Chromium; browser lain memakai tampilan bawaan |
