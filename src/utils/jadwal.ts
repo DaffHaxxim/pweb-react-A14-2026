@@ -33,8 +33,8 @@ export function cariBentrokInterview(applications: Application[]): PasanganBentr
     (lamaran) => lamaran.status === "INTERVIEW" && lamaran.interviewDateTime,
   );
 
-  // Array "hasil" adalah variabel lokal, bukan state React, jadi push() di sini aman.
-  const hasil: PasanganBentrok[] = [];
+  // Hasil dikumpulkan dengan cara immutable (array baru setiap ada pasangan bentrok)
+  let hasil: PasanganBentrok[] = [];
 
   // Bandingkan setiap pasangan satu kali (i dengan j, j selalu setelah i)
   for (let i = 0; i < daftarInterview.length; i++) {
@@ -44,7 +44,7 @@ export function cariBentrokInterview(applications: Application[]): PasanganBentr
       const selisihMenit = Math.abs(waktuPertama - waktuKedua) / SATU_MENIT_MS;
 
       if (selisihMenit < 60) {
-        hasil.push({ pertama: daftarInterview[i], kedua: daftarInterview[j], selisihMenit });
+        hasil = [...hasil, { pertama: daftarInterview[i], kedua: daftarInterview[j], selisihMenit }];
       }
     }
   }

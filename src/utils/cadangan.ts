@@ -38,7 +38,7 @@ export async function bacaFileCadangan(file: File): Promise<DataCadangan> {
     throw new Error("File bukan JSON yang valid.");
   }
 
-  // Tipe unknown wajib dicek dulu sebelum dipakai (tanpa memakai any)
+  // Data bertipe unknown wajib dicek bentuknya dulu sebelum dipakai
   if (
     typeof data !== "object" ||
     data === null ||
