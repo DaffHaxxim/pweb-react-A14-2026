@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { DetailLamaran } from "../components/DetailLamaran";
 import { KELAS_INPUT, KELAS_PANEL } from "../components/gaya";
 import { KartuLamaran } from "../components/KartuLamaran";
 import { Tombol } from "../components/Tombol";
-import type { Application, ApplicationStatus } from "../types/lamaran";
+import type { Application, ApplicationStatus, DataPindahStatus } from "../types/lamaran";
 import { rawanGhosting, waktuInterview } from "../utils/jadwal";
 import { hitungSkillMatch } from "../utils/skillMatch";
 import { LABEL_STATUS, SEMUA_STATUS } from "../utils/statusLamaran";
@@ -12,17 +13,38 @@ interface HalamanLamaranProps {
   applications: Application[];
   kaptenSkills: string[];
   onSimulasi: (id: string) => void;
+  onPindahStatus: (id: string, statusBaru: ApplicationStatus, data: DataPindahStatus) => void;
+  onTambahChecklist: (id: string, teks: string) => void;
+  onCentangChecklist: (id: string, idItem: string) => void;
+  onHapusChecklist: (id: string, idItem: string) => void;
+  onTambahCatatan: (id: string, teks: string) => void;
 }
 
 type Urutan = "terbaru" | "interview" | "offer";
 
 // Fitur 3: War Room Pipeline (daftar lamaran + filter gabungan)
-export function HalamanLamaran({ applications, kaptenSkills, onSimulasi }: HalamanLamaranProps) {
+export function HalamanLamaran({
+  applications,
+  kaptenSkills,
+  onSimulasi,
+  onPindahStatus,
+  onTambahChecklist,
+  onCentangChecklist,
+  onHapusChecklist,
+  onTambahCatatan,
+}: HalamanLamaranProps) {
   // State filter (hanya memengaruhi tampilan, data asli di App tidak berubah)
   const [cari, setCari] = useState("");
   const [filterStatus, setFilterStatus] = useState<ApplicationStatus | "SEMUA">("SEMUA");
   const [hanyaGhosting, setHanyaGhosting] = useState(false);
   const [urutan, setUrutan] = useState<Urutan>("terbaru");
+
+  // ID lamaran yang detailnya sedang dibuka (null = modal tertutup)
+  const [idTerpilih, setIdTerpilih] = useState<string | null>(null);
+
+  // Objek lamaran dicari dari data terbaru setiap render, jadi modal selalu menampilkan data mutakhir.
+  // Jika lamaran itu dihapus, hasilnya undefined dan modal otomatis tertutup.
+  const lamaranTerpilih = applications.find((lamaran) => lamaran.id === idTerpilih);
 
   // ===== Derived state: hasil filter dan sorting dihitung setiap render =====
   const kata = cari.trim().toLowerCase();
@@ -141,9 +163,26 @@ export function HalamanLamaran({ applications, kaptenSkills, onSimulasi }: Halam
               lamaran={lamaran}
               persenMatch={hitungSkillMatch(kaptenSkills, lamaran.requiredSkills).persen}
               onSimulasi={() => onSimulasi(lamaran.id)}
+              onDetail={() => setIdTerpilih(lamaran.id)}
             />
           ))}
         </div>
+      )}
+
+      {/* Modal detail: hanya dirender saat ada lamaran terpilih.
+          Saat ditutup, komponen di-unmount sehingga cleanup useEffect di dalamnya berjalan. */}
+      {lamaranTerpilih && (
+        <DetailLamaran
+          lamaran={lamaranTerpilih}
+          persenMatch={hitungSkillMatch(kaptenSkills, lamaranTerpilih.requiredSkills).persen}
+          onTutup={() => setIdTerpilih(null)}
+          onPindahStatus={(statusBaru, data) => onPindahStatus(lamaranTerpilih.id, statusBaru, data)}
+          onTambahChecklist={(teks) => onTambahChecklist(lamaranTerpilih.id, teks)}
+          onCentangChecklist={(idItem) => onCentangChecklist(lamaranTerpilih.id, idItem)}
+          onHapusChecklist={(idItem) => onHapusChecklist(lamaranTerpilih.id, idItem)}
+          onTambahCatatan={(teks) => onTambahCatatan(lamaranTerpilih.id, teks)}
+          onSimulasi={() => onSimulasi(lamaranTerpilih.id)}
+        />
       )}
     </section>
   );

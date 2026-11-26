@@ -9,10 +9,11 @@ interface KartuLamaranProps {
   lamaran: Application;
   persenMatch: number;
   onSimulasi: () => void;
+  onDetail: () => void;
 }
 
 // Satu kartu lamaran di War Room
-export function KartuLamaran({ lamaran, persenMatch, onSimulasi }: KartuLamaranProps) {
+export function KartuLamaran({ lamaran, persenMatch, onSimulasi, onDetail }: KartuLamaranProps) {
   // Progress checklist, misal 3/4 (derived dari array checklist)
   const jumlahSelesai = lamaran.checklist.filter((item) => item.done).length;
   const jumlahItem = lamaran.checklist.length;
@@ -68,6 +69,9 @@ export function KartuLamaran({ lamaran, persenMatch, onSimulasi }: KartuLamaranP
       </div>
 
       <div className="mt-auto flex flex-wrap gap-2 border-t-2 border-garis pt-3">
+        <Tombol ukuran="kecil" onClick={onDetail}>
+          Detail
+        </Tombol>
         {bisaDisimulasi && (
           <Tombol varian="kedua" ukuran="kecil" onClick={onSimulasi} title="Mundurkan lastUpdatedAt 15 hari">
             Simulasi +15 Hari
