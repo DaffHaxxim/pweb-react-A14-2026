@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { KELAS_INPUT, KELAS_JUDUL_PANEL, KELAS_PANEL } from "../components/gaya";
 import { KartuLowongan } from "../components/KartuLowongan";
 import { ProfilSkill } from "../components/ProfilSkill";
@@ -42,6 +42,26 @@ export function HalamanLowongan({
   const [keyword, setKeyword] = useState("");
   const [kategori, setKategori] = useState("SEMUA");
   const [urutan, setUrutan] = useState<Urutan>("match");
+
+  // Bonus: tekan "/" untuk langsung fokus ke kolom pencarian (memakai useRef)
+  const refCari = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const tanganiTombol = (e: KeyboardEvent) => {
+      // Jangan ganggu jika pengguna sedang mengetik di input lain
+      const target = e.target as HTMLElement;
+      const sedangMengisi = target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT";
+
+      if (e.key === "/" && !sedangMengisi) {
+        e.preventDefault(); // supaya karakter "/" tidak ikut terketik
+        refCari.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", tanganiTombol);
+    // Cleanup: lepas listener saat halaman ditinggalkan
+    return () => window.removeEventListener("keydown", tanganiTombol);
+  }, []);
 
   // Custom Hook useDebounce: keywordDebounce baru berubah 400 ms setelah pengguna berhenti mengetik
   const keywordDebounce = useDebounce(keyword, 400);
@@ -121,9 +141,10 @@ export function HalamanLowongan({
         <div className="grid grid-cols-1 gap-2 md:grid-cols-4">
           <input
             type="search"
+            ref={refCari}
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            placeholder="Cari posisi atau perusahaan..."
+            placeholder="Cari posisi atau perusahaan... (tekan / )"
             aria-label="Cari lowongan"
             className={`${KELAS_INPUT} md:col-span-2`}
           />
