@@ -8,7 +8,7 @@ import { HalamanLowongan } from "./pages/HalamanLowongan";
 import { HalamanOffer } from "./pages/HalamanOffer";
 import { HalamanTidakDitemukan } from "./pages/HalamanTidakDitemukan";
 import { ambilLowongan } from "./services/jobService";
-import type { Application } from "./types/lamaran";
+import type { Application, DataLamaranBaru } from "./types/lamaran";
 import type { JobListing, SumberData } from "./types/lowongan";
 import { buatLamaranBaru, sudahDilamar, tebakModeKerja } from "./utils/lamaran";
 
@@ -87,6 +87,12 @@ export default function App() {
     setApplications((prev) => [lamaranBaru, ...prev]);
   };
 
+  // Simpan lamaran dari form manual (validasi sudah dilakukan di FormLamaran)
+  const tambahLamaran = (data: DataLamaranBaru) => {
+    const lamaranBaru = buatLamaranBaru(data, "form manual");
+    setApplications((prev) => [lamaranBaru, ...prev]);
+  };
+
   // ===== Tabel route =====
   return (
     <Routes>
@@ -110,7 +116,10 @@ export default function App() {
           }
         />
         <Route path="lamaran" element={<HalamanLamaran />} />
-        <Route path="lamaran/baru" element={<HalamanCatatLamaran />} />
+        <Route
+          path="lamaran/baru"
+          element={<HalamanCatatLamaran applications={applications} onTambah={tambahLamaran} />}
+        />
         <Route path="offer" element={<HalamanOffer />} />
         <Route path="*" element={<HalamanTidakDitemukan />} />
       </Route>
