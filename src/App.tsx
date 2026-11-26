@@ -40,6 +40,10 @@ export default function App() {
   // CSS di index.css lalu mengganti isi token warna sesuai tema.
   useEffect(() => {
     document.documentElement.dataset.tema = tema;
+
+    // Ikon tab browser ikut tema (public/favicon-emas.svg, favicon-gelap.svg, favicon-baja.svg)
+    const ikon = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
+    if (ikon) ikon.href = `/favicon-${tema}.svg`;
   }, [tema]);
 
   // ===== State data lowongan (pola data / isLoading / error dari materi) =====

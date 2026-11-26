@@ -59,7 +59,7 @@ export function RingkasanStatistik({ applications }: { applications: Application
   return (
     <section aria-label="Statistik lamaran" className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
       {daftarKartu.map((kartu) => (
-        <div key={kartu.judul} className="border-2 border-tepi bg-latar p-3">
+        <div key={kartu.judul} className="latar-kartu border-2 border-tepi p-3">
           <p className="text-xs font-bold tracking-widest text-redup uppercase">{kartu.judul}</p>
           <p className={`mt-1 font-mono text-3xl font-semibold ${kartu.warna}`}>{kartu.nilai}</p>
           <p className="text-xs text-redup">{kartu.keterangan}</p>

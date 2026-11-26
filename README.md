@@ -11,7 +11,7 @@ Praktikum Pemrograman Web Modul 5, Kelompok A14.
 | Framework | React 19 + TypeScript (`strict: true`, tanpa tipe `any`) |
 | Build tool | Vite (template `react-ts`) |
 | Navigasi | React Router v7 (mode deklaratif) |
-| Styling | Tailwind CSS v4 dengan token warna di `src/index.css` dan 3 tema (Emas, Gelap, Baja) |
+| Styling | Tailwind CSS v4 dengan token warna di `src/index.css` dan 3 tema (Vibrant Yellow, Soft Night, Matte Steel) |
 | State, fetch, form, timer, penyimpanan | React Hooks bawaan + Custom Hook buatan sendiri (`useLocalStorage`, `useDebounce`) |
 
 Tidak memakai library state management (Redux, Zustand, TanStack Query) maupun library form (React Hook Form, Formik).
@@ -59,7 +59,7 @@ public/
 src/
 ├── App.tsx                   State utama + semua handler + tabel route
 ├── main.tsx                  Titik masuk (BrowserRouter)
-├── index.css                 Tailwind + token warna + tema Gelap dan Baja
+├── index.css                 Tailwind + token warna + tema Soft Night dan Matte Steel
 ├── components/               Komponen UI (kartu, form, modal, badge, timer, dll.)
 ├── data/contohLamaran.ts     Data contoh untuk demo
 ├── hooks/                    useLocalStorage<T>, useDebounce<T>
@@ -132,17 +132,20 @@ Tombol status hanya menampilkan tujuan yang sah, dan `pindahStatus` di `App.tsx`
 
 Pilihan **Tema** ada di header dan tersimpan di localStorage.
 
-| Tema | Karakter |
+| Tema (nilai di kode) | Karakter |
 |---|---|
-| **Emas** (bawaan) | Latar putih, aksen kuning, emas, oranye, cokelat, garis hitam |
-| **Gelap** | Latar arang seperti pemutar musik AIMP, aksen emas dan oranye |
-| **Baja** | Tetap dominan putih, dengan gradasi abu-abu seperti baja matte |
+| **Vibrant Yellow** (`emas`, bawaan) | Latar putih, aksen kuning, emas, oranye, cokelat, garis hitam |
+| **Soft Night** (`gelap`) | Arang lembut seperti pemutar musik AIMP, kotak sedikit lebih terang dari latar, aksen emas dan oranye yang diredam |
+| **Matte Steel** (`baja`) | Tetap dominan putih, kotak abu-abu muda bertekstur seperti baja matte, tanpa warna oranye |
+
+Ikon tab browser ikut berganti sesuai tema (`public/favicon-emas.svg`, `favicon-gelap.svg`, `favicon-baja.svg`).
 
 Cara kerjanya: setiap warna di `src/index.css` diberi nama sesuai **perannya**, bukan nama warnanya:
 
 | Token | Peran |
 |---|---|
-| `latar`, `permukaan` | Latar halaman dan panel |
+| `latar`, `permukaan` | Latar halaman dan bilah/panel |
+| `kartu` + kelas `latar-kartu` | Latar kotak/kartu; di Matte Steel diberi tekstur (`--tekstur-kartu`) |
 | `garis`, `tepi` | Garis pemisah tipis dan garis tepi tegas |
 | `teks`, `redup` | Teks utama dan teks keterangan |
 | `pekat`, `di-pekat` | Permukaan pekat (logo, tombol gelap, toast) dan teks di atasnya |
@@ -150,8 +153,9 @@ Cara kerjanya: setiap warna di `src/index.css` diberi nama sesuai **perannya**, 
 | `sorot`, `sorot-muda`, `teks-sorot` | Warna kedua (progress bar, fokus, badge ghosting) |
 | `sekunder` | Judul panel dan tautan |
 | `berhasil`, `peringatan`, `bahaya` (+ `-muda`) | Hijau, kuning, merah; ada di semua tema karena diminta soal untuk badge Match |
+| `kurang` | Penanda missing skill (merah, kecuali abu-abu di Matte Steel) |
 
-Kelas Tailwind seperti `bg-aksen` dikompilasi menjadi `background-color: var(--color-aksen)`. Tema Gelap dan Baja hanya mengganti nilai token lewat selektor `:root[data-tema="gelap"]` dan `:root[data-tema="baja"]`, jadi komponen tidak perlu diubah.
+Kelas Tailwind seperti `bg-aksen` dikompilasi menjadi `background-color: var(--color-aksen)`. Tema Soft Night dan Matte Steel hanya mengganti nilai token lewat selektor `:root[data-tema="gelap"]` dan `:root[data-tema="baja"]`, jadi komponen tidak perlu diubah.
 
 ## Sumber Data
 
@@ -166,7 +170,7 @@ Kelas Tailwind seperti `bg-aksen` dikompilasi menjadi `background-color: var(--c
 | `crypto.randomUUID()` | ID unik (disarankan soal; berjalan di `localhost` atau https) |
 | `Record<K, V>` | Tabel state machine dan peta warna/label |
 | React Router v7 dan Tailwind CSS v4 | Navigasi dan styling (materi minggu berikutnya) |
-| `document.documentElement.dataset` + skrip kecil di `index.html` | Bonus tema: memasang `data-tema` pada `<html>`; skrip dijalankan sebelum React agar tema Gelap tidak berkedip putih saat halaman dimuat |
+| `document.documentElement.dataset` + skrip kecil di `index.html` | Bonus tema: memasang `data-tema` pada `<html>`; skrip dijalankan sebelum React agar tema Soft Night tidak berkedip putih saat halaman dimuat |
 | `window.addEventListener("keydown")` | Bonus shortcut `/` |
 | `Blob`, `URL.createObjectURL`, `file.text()` | Bonus ekspor/impor JSON |
 | CSS `appearance: base-select` | Dropdown `<select>` bergaya tema (sorotan kuning muda) di browser Chromium; browser lain memakai tampilan bawaan |

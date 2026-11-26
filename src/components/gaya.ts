@@ -14,6 +14,6 @@ export const KELAS_INPUT_GALAT =
 export const KELAS_PESAN_GALAT = "mt-1 text-xs font-medium text-bahaya";
 
 // Panel/kartu dasar: kotak dengan garis tepi tegas
-export const KELAS_PANEL = "border-2 border-tepi bg-latar p-4";
+export const KELAS_PANEL = "latar-kartu border-2 border-tepi p-4";
 
 export const KELAS_JUDUL_PANEL = "mb-3 text-xs font-bold uppercase tracking-widest text-sekunder";

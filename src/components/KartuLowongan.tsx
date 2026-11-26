@@ -18,7 +18,7 @@ export function KartuLowongan({ job, match, sudahAda, onSimpan }: KartuLowonganP
   const sisaTag = job.tags.length - tagTampil.length;
 
   return (
-    <article className="flex flex-col gap-3 border-2 border-tepi bg-latar p-4">
+    <article className="latar-kartu flex flex-col gap-3 border-2 border-tepi p-4">
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
           <span className="grid h-10 w-10 shrink-0 place-items-center bg-pekat font-mono text-sm font-semibold text-aksen">
@@ -46,7 +46,7 @@ export function KartuLowongan({ job, match, sudahAda, onSimpan }: KartuLowonganP
             className={
               match.cocok.includes(tag)
                 ? "border border-tepi bg-aksen-muda px-1.5 py-0.5 text-xs font-medium"
-                : "border border-dashed border-bahaya px-1.5 py-0.5 text-xs font-medium text-bahaya"
+                : "border border-dashed border-kurang px-1.5 py-0.5 text-xs font-medium text-kurang"
             }
           >
             {tag}
@@ -58,7 +58,7 @@ export function KartuLowongan({ job, match, sudahAda, onSimpan }: KartuLowonganP
       <p className="text-xs">
         <span className="font-semibold text-berhasil">{match.cocok.length} skill cocok</span>
         {match.kurang.length > 0 && (
-          <span className="text-bahaya">
+          <span className="text-kurang">
             {" "}
             · Missing: {match.kurang.slice(0, 5).join(", ")}
             {match.kurang.length > 5 && ` +${match.kurang.length - 5} lainnya`}

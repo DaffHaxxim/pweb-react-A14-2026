@@ -144,8 +144,8 @@ function KartuSkorOffer({ offer, skor, kaptenSkills, terbaik }: KartuSkorOfferPr
     <article
       className={
         terbaik
-          ? "border-4 border-sorot bg-latar p-4"
-          : "border-2 border-tepi bg-latar p-4"
+          ? "latar-kartu border-4 border-sorot p-4"
+          : "latar-kartu border-2 border-tepi p-4"
       }
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
