@@ -27,5 +27,11 @@ export async function ambilLowongan(sumber: SumberData, signal: AbortSignal): Pr
   }
 
   const json = (await res.json()) as ResponsLowongan;
-  return json.jobs;
+
+  // Rapikan data: tags selalu berupa array tanpa duplikat,
+  // karena setiap tag dipakai sebagai key saat dirender dengan .map()
+  return json.jobs.map((job) => ({
+    ...job,
+    tags: (job.tags ?? []).filter((tag, index, semua) => semua.indexOf(tag) === index),
+  }));
 }

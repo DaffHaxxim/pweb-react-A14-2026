@@ -33,12 +33,18 @@ export function tebakModeKerja(lokasi: string): WorkMode {
   return "Remote";
 }
 
-// Ubah "React, TypeScript, CSS" menjadi ["React", "TypeScript", "CSS"]
+// Ubah "React, TypeScript, CSS" menjadi ["React", "TypeScript", "CSS"].
+// Skill kosong dan skill yang tertulis dua kali (tanpa peduli huruf besar/kecil) dibuang.
 export function pisahkanSkill(teks: string): string[] {
-  return teks
+  const semuaSkill = teks
     .split(",")
     .map((skill) => skill.trim())
     .filter((skill) => skill !== "");
+
+  return semuaSkill.filter(
+    (skill, index) =>
+      semuaSkill.findIndex((lain) => lain.toLowerCase() === skill.toLowerCase()) === index,
+  );
 }
 
 // Membuat objek Application lengkap dari data form / lowongan.
