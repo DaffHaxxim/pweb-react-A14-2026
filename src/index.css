@@ -43,8 +43,8 @@
   /* Status. Hijau, kuning, dan merah wajib ada di SEMUA tema karena diminta soal untuk badge Match */
   --color-berhasil: #4f7a12;
   --color-berhasil-muda: #eef5dc;
-  --color-bahaya: #b3261e;
-  --color-bahaya-muda: #fde7e4;
+  --color-bahaya: #d41616; /* merah murni (hue 0), kontras 4.5:1 di atas bahaya-muda */
+  --color-bahaya-muda: #ffe6e6;
   --color-peringatan: #c9971c;
   --color-peringatan-muda: #fef6d8;
   --color-teks-peringatan: #4a2c14;
@@ -213,8 +213,8 @@
     --color-sekunder: #4f5861;
     --color-berhasil: #4b7a3a;
     --color-berhasil-muda: #e8f1e3;
-    --color-bahaya: #c8283c;
-    --color-bahaya-muda: #fbe9ec;
+    --color-bahaya: #d41616;
+    --color-bahaya-muda: #ffe6e6;
     --color-peringatan: #b8a01a;
     --color-peringatan-muda: #faf6d8;
     --color-teks-peringatan: #4f4600;
