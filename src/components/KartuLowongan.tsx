@@ -66,24 +66,36 @@ export function KartuLowongan({ job, match, sudahAda, onSimpan }: KartuLowonganP
         )}
       </p>
 
-      <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t-2 border-garis pt-3">
-        <span className="font-mono text-sm font-semibold">{job.salary || "Gaji tidak dicantumkan"}</span>
-        <div className="flex items-center gap-2">
+      {/* Bagian bawah kartu selalu 2 baris (gaji + tautan, lalu tombol),
+          supaya tata letaknya sama untuk semua kartu, ada gaji atau tidak */}
+      <div className="mt-auto space-y-2 border-t-2 border-garis pt-3">
+        <div className="flex items-center justify-between gap-2">
+          {job.salary ? (
+            <span className="font-mono text-sm font-semibold">{job.salary}</span>
+          ) : (
+            <span className="font-mono text-sm text-redup">Gaji tidak dicantumkan</span>
+          )}
           {/* Tautan balik ke Remotive (diminta oleh ketentuan API Remotive) */}
           {job.url && (
             <a
               href={job.url}
               target="_blank"
               rel="noreferrer"
-              className="text-xs font-semibold text-cokelat underline hover:text-oranye"
+              className="shrink-0 text-xs font-semibold text-cokelat underline hover:text-oranye"
             >
               Lihat di Remotive
             </a>
           )}
-          <Tombol ukuran="kecil" varian={sudahAda ? "kedua" : "utama"} disabled={sudahAda} onClick={onSimpan}>
-            {sudahAda ? "Sudah Dilamar" : "Simpan ke Wishlist"}
-          </Tombol>
         </div>
+        <Tombol
+          ukuran="kecil"
+          varian={sudahAda ? "kedua" : "utama"}
+          disabled={sudahAda}
+          onClick={onSimpan}
+          className="w-full"
+        >
+          {sudahAda ? "Sudah Dilamar" : "Simpan ke Wishlist"}
+        </Tombol>
       </div>
     </article>
   );
