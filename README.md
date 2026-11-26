@@ -174,3 +174,102 @@ Kelas Tailwind seperti `bg-aksen` dikompilasi menjadi `background-color: var(--c
 | `window.addEventListener("keydown")` | Bonus shortcut `/` |
 | `Blob`, `URL.createObjectURL`, `file.text()` | Bonus ekspor/impor JSON |
 | CSS `appearance: base-select` | Dropdown `<select>` bergaya tema (sorotan kuning muda) di browser Chromium; browser lain memakai tampilan bawaan |
+
+## Dokumentasi
+
+Tangkapan layar di bawah diambil dari hasil build produksi (`npm run build` + `npm run preview`) dengan tema bawaan **Vibrant Yellow**, kecuali bagian Tema Warna. Semua gambar ada di folder [`Asset/`](Asset/).
+
+### Fitur 1: Profil Skill & Eksplorasi Lowongan
+
+| Kondisi | Tangkapan layar |
+|---|---|
+| **Loading**: lowongan sedang diambil dari Remotive API | ![Loading](Asset/01-eksplorasi-loading.png) |
+| **Daftar lowongan** dari Remotive, lengkap dengan Match %, skill cocok/missing, dan tautan "Lihat di Remotive" | ![Daftar Remotive](Asset/02-eksplorasi-daftar-remotive.png) |
+| **Error** saat offline: pesan gagal + tombol Coba Lagi dan Pakai Fallback Lokal | ![Error offline](Asset/03-eksplorasi-error-offline.png) |
+| **Dataset lokal** (`public/magang-fallback.json`, 15 lowongan) | ![Dataset lokal](Asset/04-eksplorasi-dataset-lokal.png) |
+| **Kosong**: pencarian tanpa hasil + tombol Reset Pencarian | ![Kosong](Asset/05-eksplorasi-kosong.png) |
+| **Debounce**: selama mengetik, filter menunggu ("Menunggu ketikan selesai...") | ![Debounce menunggu](Asset/06-debounce-menunggu.png) |
+| **Debounce**: sekitar 400 ms setelah berhenti mengetik, daftar tersaring | ![Debounce hasil](Asset/07-debounce-hasil.png) |
+| **Skill Match live**: sebelum skill Docker ditambah (60%) | ![Sebelum Docker](Asset/08-skill-sebelum-docker.png) |
+| **Skill Match live**: sesudah skill Docker ditambah (80%, Docker jadi skill cocok) | ![Sesudah Docker](Asset/09-skill-sesudah-docker.png) |
+| **Skill duplikat ditolak** (tidak peduli huruf besar/kecil) | ![Skill duplikat](Asset/10-skill-duplikat.png) |
+| **Filter kategori** (Data Analysis) | ![Filter kategori](Asset/11-filter-kategori.png) |
+| **Sudah Dilamar**: tombol otomatis nonaktif setelah disimpan ke Wishlist | ![Sudah Dilamar](Asset/12-sudah-dilamar.png) |
+| **Bonus shortcut `/`**: kolom pencarian langsung terfokus | ![Shortcut slash](Asset/13-shortcut-slash.png) |
+
+### Fitur 2: Form Tambah Lamaran Manual
+
+| Kondisi | Tangkapan layar |
+|---|---|
+| Form kosong (controlled form) | ![Form kosong](Asset/14-form-kosong.png) |
+| Status Awal APPLIED memunculkan Versi CV dan Tanggal Melamar; input kosong ditolak dan kursor pindah ke error pertama | ![Validasi APPLIED](Asset/15-form-validasi-applied.png) |
+| Perusahaan + posisi yang sama (beda huruf besar/kecil) ditolak, kursor pindah ke kolom Perusahaan | ![Duplikat](Asset/16-form-duplikat.png) |
+| Lamaran tersimpan, aplikasi pindah ke War Room | ![Berhasil](Asset/17-form-berhasil.png) |
+
+### Fitur 3: War Room, Rawan Ghosting, dan Bentrok Jadwal
+
+| Kondisi | Tangkapan layar |
+|---|---|
+| War Room kosong (tombol Catat Lamaran dan Muat Data Contoh) | ![War Room kosong](Asset/18-warroom-kosong.png) |
+| Data contoh: 7 lamaran dengan berbagai status | ![Data contoh](Asset/19-warroom-data-contoh.png) |
+| Setelah **Simulasi +15 Hari**: badge Rawan Ghosting muncul dan statistik bertambah | ![Ghosting](Asset/20-warroom-ghosting.png) |
+| Toggle **Hanya Rawan Ghosting** | ![Filter ghosting](Asset/21-warroom-filter-ghosting.png) |
+| **Banner bentrok** (2 interview selisih 30 menit) tetap tampil walau filter status Wishlist aktif | ![Bentrok](Asset/22-warroom-bentrok-filter.png) |
+| Urutan **Offer Tertinggi** | ![Urut offer](Asset/23-warroom-urut-offer.png) |
+
+### Fitur 4: Detail Lamaran (State Machine, Checklist, Riwayat)
+
+| Kondisi | Tangkapan layar |
+|---|---|
+| Lamaran WISHLIST hanya bisa pindah ke **Applied** (tidak bisa langsung ke Offer) | ![Opsi WISHLIST](Asset/24-detail-opsi-wishlist.png) |
+| Pindah ke APPLIED tanpa Versi CV dan tanggal ditolak | ![Syarat APPLIED](Asset/25-detail-syarat-applied.png) |
+| Pindah ke INTERVIEW memunculkan input jadwal | ![Input interview](Asset/26-detail-input-interview.png) |
+| Pindah ke OFFER memunculkan input uang saku dan mode kerja | ![Input offer](Asset/27-detail-input-offer.png) |
+| Status OFFER bersifat final | ![Status final](Asset/28-detail-status-final.png) |
+| Status GHOSTED hanya boleh kembali ke **Screening** | ![GHOSTED](Asset/29-detail-ghosted-kembali.png) |
+| Checklist bertingkat (tambah, centang, progress) dan catatan manual di Riwayat Aktivitas | ![Checklist dan log](Asset/30-detail-checklist-log.png) |
+
+### Fitur 5: Interview Prep Timer
+
+| Kondisi | Tangkapan layar |
+|---|---|
+| Timer berjalan (02:00 menurun) dengan tombol Pause, Reset, Soal Berikutnya | ![Timer berjalan](Asset/31-timer-berjalan.png) |
+| Waktu habis: 00:00, pesan peringatan, tombol Start nonaktif | ![Timer habis](Asset/32-timer-habis.png) |
+
+### Fitur 6: Undo Delete dan Persistensi
+
+| Kondisi | Tangkapan layar |
+|---|---|
+| Toast **Undo (5 detik)** setelah lamaran dihapus (pojok kanan bawah) | ![Undo](Asset/33-undo-toast.png) |
+
+### Fitur 7: Dashboard Statistik dan Offer Comparator
+
+| Kondisi | Tangkapan layar |
+|---|---|
+| 5 kartu statistik (derived state) | ![Statistik](Asset/34-statistik.png) |
+| Offer kurang dari 2: pesan kosong yang jelas | ![Offer kosong](Asset/35-offer-kosong.png) |
+| Perbandingan dua offer dengan skor berbobot dan badge Rekomendasi Terbaik | ![Perbandingan offer](Asset/36-offer-perbandingan.png) |
+
+### Bonus dan Lain-lain
+
+| Kondisi | Tangkapan layar |
+|---|---|
+| Ekspor lalu impor cadangan JSON berhasil | ![Ekspor impor](Asset/37-ekspor-impor.png) |
+| Halaman 404 untuk alamat yang tidak terdaftar | ![404](Asset/38-halaman-404.png) |
+
+### Tema Warna
+
+| Kondisi | Tangkapan layar |
+|---|---|
+| Pilihan tema di header (dropdown bergaya tema) | ![Pilihan tema](Asset/39-tema-pilihan.png) |
+| **Vibrant Yellow** (bawaan) | ![Vibrant Yellow](Asset/40-tema-vibrant-yellow.png) |
+| **Soft Night** | ![Soft Night](Asset/41-tema-soft-night.png) |
+| **Matte Steel** | ![Matte Steel](Asset/42-tema-matte-steel.png) |
+| Modal detail pada Soft Night | ![Soft Night detail](Asset/43-tema-soft-night-detail.png) |
+| Badge Match hijau/kuning/merah di ketiga tema | ![Badge 3 tema](Asset/44-badge-match-3-tema.png) |
+
+### Tampilan Ponsel (lebar 390 px)
+
+| Eksplorasi Lowongan | War Room |
+|---|---|
+| ![Ponsel eksplorasi](Asset/45-responsif-hp-eksplorasi.png) | ![Ponsel War Room](Asset/46-responsif-hp-warroom.png) |
