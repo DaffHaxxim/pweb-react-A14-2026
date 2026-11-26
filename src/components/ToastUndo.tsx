@@ -13,7 +13,7 @@ export function ToastUndo({ lamaran, onBatalkan }: ToastUndoProps) {
   return (
     <div
       role="status"
-      className="fixed right-4 bottom-4 left-4 z-50 flex animate-muncul flex-wrap items-center justify-between gap-3 border-2 border-hitam bg-hitam px-4 py-3 text-sm text-latar shadow-tegas sm:left-auto sm:max-w-md"
+      className="fixed right-4 bottom-4 left-4 z-50 flex animate-muncul flex-wrap items-center justify-between gap-3 border-2 border-hitam bg-hitam px-4 py-3 text-sm text-latar sm:left-auto sm:max-w-md"
     >
       <span>
         Lamaran <span className="font-semibold text-kuning">{lamaran.company}</span> dihapus.

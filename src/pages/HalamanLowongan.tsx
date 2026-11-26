@@ -184,7 +184,7 @@ export function HalamanLowongan({
             Memuat lowongan dari {sumberData === "remotive" ? "Remotive API" : "dataset lokal"}...
           </div>
         ) : error ? (
-          <div className="border-2 border-bahaya bg-bahaya-muda p-4 shadow-tegas" role="alert">
+          <div className="border-2 border-bahaya bg-bahaya-muda p-4" role="alert">
             <p className="font-bold text-bahaya">Gagal memuat lowongan</p>
             <p className="mt-1 text-sm">{error}</p>
             <div className="mt-3 flex flex-wrap gap-2">

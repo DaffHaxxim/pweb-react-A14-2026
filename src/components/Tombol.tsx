@@ -40,7 +40,7 @@ export function Tombol({
       onClick={onClick}
       disabled={disabled}
       title={title}
-      className={`border-2 font-semibold shadow-tegas-kecil transition active:translate-x-0.5 active:translate-y-0.5 active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none ${GAYA_VARIAN[varian]} ${GAYA_UKURAN[ukuran]} ${className}`}
+      className={`border-2 font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 ${GAYA_VARIAN[varian]} ${GAYA_UKURAN[ukuran]} ${className}`}
     >
       {children}
     </button>

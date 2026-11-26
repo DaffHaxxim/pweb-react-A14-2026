@@ -18,7 +18,7 @@ export function KartuLowongan({ job, match, sudahAda, onSimpan }: KartuLowonganP
   const sisaTag = job.tags.length - tagTampil.length;
 
   return (
-    <article className="flex flex-col gap-3 border-2 border-hitam bg-latar p-4 shadow-tegas">
+    <article className="flex flex-col gap-3 border-2 border-hitam bg-latar p-4">
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
           <span className="grid h-10 w-10 shrink-0 place-items-center bg-hitam font-mono text-sm font-semibold text-kuning">

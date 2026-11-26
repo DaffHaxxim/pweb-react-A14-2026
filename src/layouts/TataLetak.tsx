@@ -49,7 +49,7 @@ export function TataLetak({ applications, lamaranTerhapus, onBatalkanHapus }: Ta
 
           <Link
             to="/lamaran/baru"
-            className="border-2 border-hitam bg-hitam px-4 py-2 text-sm font-semibold text-latar shadow-tegas-kecil hover:bg-cokelat-tua"
+            className="border-2 border-hitam bg-hitam px-4 py-2 text-sm font-semibold text-latar hover:bg-cokelat-tua"
           >
             + Catat Lamaran
           </Link>

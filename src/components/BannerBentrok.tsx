@@ -10,7 +10,7 @@ export function BannerBentrok({ applications }: { applications: Application[] })
   if (daftarBentrok.length === 0) return null;
 
   return (
-    <div role="alert" className="border-2 border-bahaya bg-bahaya-muda p-3 shadow-tegas-kecil">
+    <div role="alert" className="border-2 border-bahaya bg-bahaya-muda p-3">
       <p className="text-sm font-bold text-bahaya">⚠ Jadwal Interview Bentrok</p>
       <ul className="mt-1 space-y-0.5 text-sm text-teks">
         {daftarBentrok.map(({ pertama, kedua, selisihMenit }) => (

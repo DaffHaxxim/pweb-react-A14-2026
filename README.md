@@ -141,3 +141,4 @@ Tombol status hanya menampilkan tujuan yang sah, dan `pindahStatus` di `App.tsx`
 | React Router v7 dan Tailwind CSS v4 | Navigasi dan styling (materi minggu berikutnya) |
 | `window.addEventListener("keydown")` | Bonus shortcut `/` |
 | `Blob`, `URL.createObjectURL`, `file.text()` | Bonus ekspor/impor JSON |
+| CSS `appearance: base-select` | Dropdown `<select>` bergaya tema (sorotan kuning muda) di browser Chromium; browser lain memakai tampilan bawaan |

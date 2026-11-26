@@ -324,3 +324,4 @@ Di setiap halaman selalu ada: banner **Jadwal Interview Bentrok** (jika ada), **
 | Error `crypto.randomUUID is not a function` | Aplikasi dibuka lewat alamat IP jaringan (`http://192.168...`), bukan `localhost` | Buka lewat `http://localhost:5173` |
 | Data lama mengganggu pengujian | localStorage masih berisi data sebelumnya | Kosongkan data (bagian 4) |
 | Efek terlihat berjalan dua kali di mode dev | Perilaku normal `<StrictMode>` | Bandingkan dengan `npm run preview` (efek berjalan sekali) |
+| Pilihan dropdown tersorot biru, bukan kuning | Browser belum mendukung CSS `appearance: base-select` (misal Firefox) | Normal; fungsi tetap sama. Pakai Chrome, Edge, atau Brave untuk tampilan sesuai tema |

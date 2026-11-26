@@ -24,7 +24,7 @@ export function KartuLamaran({ lamaran, persenMatch, onSimulasi, onDetail, onHap
   const bisaDisimulasi = lamaran.status === "APPLIED" || lamaran.status === "SCREENING";
 
   return (
-    <article className="flex flex-col gap-3 border-2 border-hitam bg-latar p-4 shadow-tegas">
+    <article className="flex flex-col gap-3 border-2 border-hitam bg-latar p-4">
       <div className="flex items-start gap-3">
         <span className="grid h-10 w-10 shrink-0 place-items-center bg-hitam font-mono text-sm font-semibold text-kuning">
           {inisial(lamaran.company)}

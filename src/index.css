@@ -19,6 +19,7 @@
 
   /* Aksen */
   --color-kuning-muda: #fef6d8;
+  --color-kuning-lembut: #fde9a6;
   --color-kuning: #f5c518;
   --color-emas: #c9971c;
   --color-oranye-muda: #fde9d9;
@@ -33,10 +34,6 @@
   --color-berhasil-muda: #eef5dc;
   --color-bahaya: #b3261e;
   --color-bahaya-muda: #fde7e4;
-
-  /* Bayangan offset tegas agar elemen terlihat kotak dan tajam */
-  --shadow-tegas: 4px 4px 0 0 var(--color-hitam);
-  --shadow-tegas-kecil: 2px 2px 0 0 var(--color-hitam);
 
   /* Animasi muncul untuk toast dan modal */
   --animate-muncul: muncul 0.18s ease-out;
@@ -73,5 +70,48 @@
   :focus-visible {
     outline: 2px solid var(--color-oranye);
     outline-offset: 2px;
+  }
+
+  /* ===== Dropdown <select> mengikuti tema =====
+     Catatan: memakai fitur CSS "customizable select" (appearance: base-select) yang
+     didukung browser Chromium baru (Chrome, Edge, Brave). Ini di luar materi.
+     Browser yang belum mendukung tetap memakai tampilan bawaan sistem. */
+  select,
+  ::picker(select) {
+    appearance: base-select;
+  }
+
+  /* Kotak daftar pilihan: sudut tajam, garis hitam, tanpa bayangan */
+  ::picker(select) {
+    margin-top: 2px;
+    padding: 0;
+    border: 2px solid var(--color-hitam);
+    border-radius: 0;
+    background: var(--color-latar);
+    box-shadow: none;
+  }
+
+  select option {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0;
+  }
+
+  /* Pilihan yang sedang aktif */
+  select option:checked {
+    background: var(--color-kuning-muda);
+    font-weight: 600;
+  }
+
+  /* Pilihan yang sedang disorot mouse/keyboard: kuning lembut (bukan biru bawaan) */
+  select option:hover,
+  select option:focus-visible {
+    background: var(--color-kuning-lembut);
+    color: var(--color-teks);
+    outline: none;
+  }
+
+  /* Tanda centang bawaan tidak dipakai; pilihan aktif sudah ditandai warna dan huruf tebal */
+  select option::checkmark {
+    display: none;
   }
 }

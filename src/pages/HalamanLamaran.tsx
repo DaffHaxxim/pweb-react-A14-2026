@@ -142,7 +142,7 @@ export function HalamanLamaran({
           <div className="mt-3 flex flex-wrap gap-2">
             <Link
               to="/lamaran/baru"
-              className="border-2 border-hitam bg-kuning px-3 py-1 text-xs font-semibold shadow-tegas-kecil hover:bg-emas"
+              className="border-2 border-hitam bg-kuning px-3 py-1 text-xs font-semibold hover:bg-emas"
             >
               + Catat Lamaran
             </Link>

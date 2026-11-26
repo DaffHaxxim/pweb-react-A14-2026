@@ -33,7 +33,7 @@ export function HalamanOffer({ applications, kaptenSkills }: HalamanOfferProps) 
           </p>
           <Link
             to="/lamaran"
-            className="mt-3 inline-block border-2 border-hitam bg-kuning px-3 py-1 text-xs font-semibold shadow-tegas-kecil hover:bg-emas"
+            className="mt-3 inline-block border-2 border-hitam bg-kuning px-3 py-1 text-xs font-semibold hover:bg-emas"
           >
             Buka War Room
           </Link>
@@ -144,8 +144,8 @@ function KartuSkorOffer({ offer, skor, kaptenSkills, terbaik }: KartuSkorOfferPr
     <article
       className={
         terbaik
-          ? "border-4 border-oranye bg-latar p-4 shadow-tegas"
-          : "border-2 border-hitam bg-latar p-4 shadow-tegas"
+          ? "border-4 border-oranye bg-latar p-4"
+          : "border-2 border-hitam bg-latar p-4"
       }
     >
       <div className="flex flex-wrap items-start justify-between gap-2">

@@ -51,7 +51,7 @@ export function DetailLamaran({
         role="dialog"
         aria-modal="true"
         aria-label={`Detail lamaran ${lamaran.company}`}
-        className="w-full max-w-5xl animate-muncul border-2 border-hitam bg-latar shadow-tegas"
+        className="w-full max-w-5xl animate-muncul border-2 border-hitam bg-latar"
       >
         {/* ===== Header modal ===== */}
         <header className="flex flex-wrap items-start justify-between gap-3 border-b-2 border-hitam bg-permukaan p-4">
