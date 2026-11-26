@@ -29,8 +29,9 @@ export function LatihanInterview() {
     if (!berjalan || waktuHabis) return;
 
     const idInterval = setInterval(() => {
-      // Pakai bentuk fungsi (detik) => ... agar selalu mengurangi nilai terbaru
-      setSisaDetik((detik) => detik - 1);
+      // Pakai bentuk fungsi (detik) => ... agar selalu mengurangi nilai terbaru.
+      // Dibatasi minimal 0 supaya tidak pernah minus walau tick datang beruntun.
+      setSisaDetik((detik) => (detik > 0 ? detik - 1 : 0));
     }, 1000);
 
     // Cleanup WAJIB: hentikan interval saat Pause, saat waktu habis,
