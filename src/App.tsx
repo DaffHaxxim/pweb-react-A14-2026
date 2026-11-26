@@ -289,7 +289,7 @@ export default function App() {
           path="lamaran/baru"
           element={<HalamanCatatLamaran applications={applications} onTambah={tambahLamaran} />}
         />
-        <Route path="offer" element={<HalamanOffer />} />
+        <Route path="offer" element={<HalamanOffer applications={applications} kaptenSkills={kaptenSkills} />} />
         <Route path="*" element={<HalamanTidakDitemukan />} />
       </Route>
     </Routes>

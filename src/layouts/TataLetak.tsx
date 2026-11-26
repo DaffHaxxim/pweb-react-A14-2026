@@ -1,5 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router";
 import { BannerBentrok } from "../components/BannerBentrok";
+import { RingkasanStatistik } from "../components/RingkasanStatistik";
 import { ToastUndo } from "../components/ToastUndo";
 import type { Application } from "../types/lamaran";
 
@@ -58,6 +59,7 @@ export function TataLetak({ applications, lamaranTerhapus, onBatalkanHapus }: Ta
       <main className="mx-auto w-full max-w-7xl flex-1 space-y-5 px-4 py-5">
         {/* Banner bentrok dihitung dari seluruh data, jadi tampil di semua halaman */}
         <BannerBentrok applications={applications} />
+        <RingkasanStatistik applications={applications} />
         <Outlet />
       </main>
 
