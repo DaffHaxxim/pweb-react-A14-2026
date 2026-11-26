@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { TataLetak } from "./layouts/TataLetak";
@@ -37,6 +37,19 @@ export default function App() {
   const [sumberData, setSumberData] = useState<SumberData>("remotive");
   // Penghitung untuk tombol "Coba Lagi"/"Muat Ulang": setiap bertambah, efek fetch dijalankan ulang
   const [nomorMuat, setNomorMuat] = useState(0);
+
+  // ===== State Undo Delete (Fitur 6) =====
+  // Salinan utuh lamaran terakhir yang dihapus (termasuk checklist dan activity log-nya)
+  const [lamaranTerhapus, setLamaranTerhapus] = useState<Application | null>(null);
+  // ID setTimeout disimpan di useRef: nilainya bertahan antar render tanpa memicu re-render
+  const timerUndoRef = useRef<number | null>(null);
+
+  // Cleanup saat App hilang: pastikan timer undo tidak tertinggal
+  useEffect(() => {
+    return () => {
+      if (timerUndoRef.current !== null) clearTimeout(timerUndoRef.current);
+    };
+  }, []);
 
   // Fetch lowongan saat aplikasi dibuka, saat sumber data diganti, dan saat tombol muat ulang diklik.
   // Efek ini ada di App (di atas Routes), jadi pindah halaman tidak memicu fetch ulang ke Remotive.
@@ -196,10 +209,48 @@ export default function App() {
     );
   };
 
+  // ===== Handler hapus + undo (Fitur 6) =====
+  const hapusLamaran = (id: string) => {
+    const target = applications.find((lamaran) => lamaran.id === id);
+    if (!target) return;
+
+    setApplications((prev) => prev.filter((lamaran) => lamaran.id !== id));
+    setLamaranTerhapus(target);
+
+    // Jika menghapus lagi sebelum 5 detik, timer lama WAJIB dibersihkan dulu.
+    // Tanpa ini, timer lama bisa menutup toast milik lamaran yang baru dihapus.
+    if (timerUndoRef.current !== null) clearTimeout(timerUndoRef.current);
+
+    timerUndoRef.current = setTimeout(() => {
+      setLamaranTerhapus(null); // 5 detik lewat: penghapusan jadi permanen
+      timerUndoRef.current = null;
+    }, 5000);
+  };
+
+  const batalkanHapus = () => {
+    if (lamaranTerhapus === null) return;
+
+    // Kembalikan objek yang sama persis, jadi checklist dan log ikut kembali utuh
+    setApplications((prev) => [lamaranTerhapus, ...prev]);
+    setLamaranTerhapus(null);
+
+    if (timerUndoRef.current !== null) clearTimeout(timerUndoRef.current);
+    timerUndoRef.current = null;
+  };
+
   // ===== Tabel route =====
   return (
     <Routes>
-      <Route path="/" element={<TataLetak applications={applications} />}>
+      <Route
+        path="/"
+        element={
+          <TataLetak
+            applications={applications}
+            lamaranTerhapus={lamaranTerhapus}
+            onBatalkanHapus={batalkanHapus}
+          />
+        }
+      >
         <Route
           index
           element={
@@ -230,6 +281,7 @@ export default function App() {
               onCentangChecklist={centangChecklist}
               onHapusChecklist={hapusChecklist}
               onTambahCatatan={tambahCatatan}
+              onHapus={hapusLamaran}
             />
           }
         />

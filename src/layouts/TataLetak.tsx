@@ -1,9 +1,12 @@
 import { Link, NavLink, Outlet } from "react-router";
 import { BannerBentrok } from "../components/BannerBentrok";
+import { ToastUndo } from "../components/ToastUndo";
 import type { Application } from "../types/lamaran";
 
 interface TataLetakProps {
   applications: Application[];
+  lamaranTerhapus: Application | null;
+  onBatalkanHapus: () => void;
 }
 
 // Kelas NavLink: React Router memberi { isActive } untuk menandai halaman yang sedang dibuka
@@ -14,7 +17,7 @@ function kelasNavigasi({ isActive }: { isActive: boolean }) {
 }
 
 // Kerangka halaman: header + navigasi, lalu isi halaman aktif lewat <Outlet />
-export function TataLetak({ applications }: TataLetakProps) {
+export function TataLetak({ applications, lamaranTerhapus, onBatalkanHapus }: TataLetakProps) {
   // Angka di menu dihitung langsung dari data (derived state)
   const jumlahOffer = applications.filter((lamaran) => lamaran.status === "OFFER").length;
 
@@ -57,6 +60,9 @@ export function TataLetak({ applications }: TataLetakProps) {
         <BannerBentrok applications={applications} />
         <Outlet />
       </main>
+
+      {/* Toast ada di tata letak agar tetap tampil walau pengguna pindah halaman */}
+      <ToastUndo lamaran={lamaranTerhapus} onBatalkan={onBatalkanHapus} />
 
       <footer className="border-t-2 border-hitam bg-permukaan">
         <p className="mx-auto max-w-7xl px-4 py-3 text-xs text-redup">

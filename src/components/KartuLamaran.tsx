@@ -10,10 +10,11 @@ interface KartuLamaranProps {
   persenMatch: number;
   onSimulasi: () => void;
   onDetail: () => void;
+  onHapus: () => void;
 }
 
 // Satu kartu lamaran di War Room
-export function KartuLamaran({ lamaran, persenMatch, onSimulasi, onDetail }: KartuLamaranProps) {
+export function KartuLamaran({ lamaran, persenMatch, onSimulasi, onDetail, onHapus }: KartuLamaranProps) {
   // Progress checklist, misal 3/4 (derived dari array checklist)
   const jumlahSelesai = lamaran.checklist.filter((item) => item.done).length;
   const jumlahItem = lamaran.checklist.length;
@@ -77,6 +78,9 @@ export function KartuLamaran({ lamaran, persenMatch, onSimulasi, onDetail }: Kar
             Simulasi +15 Hari
           </Tombol>
         )}
+        <Tombol varian="bahaya" ukuran="kecil" onClick={onHapus} className="ml-auto">
+          Hapus
+        </Tombol>
       </div>
     </article>
   );

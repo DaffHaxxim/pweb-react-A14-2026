@@ -21,6 +21,7 @@ interface DetailLamaranProps {
   onHapusChecklist: (idItem: string) => void;
   onTambahCatatan: (teks: string) => void;
   onSimulasi: () => void;
+  onHapus: () => void;
 }
 
 // Tahapan utama untuk stepper "Tahap Seleksi"
@@ -37,6 +38,7 @@ export function DetailLamaran({
   onHapusChecklist,
   onTambahCatatan,
   onSimulasi,
+  onHapus,
 }: DetailLamaranProps) {
   // Posisi status sekarang di stepper (-1 untuk REJECTED / GHOSTED)
   const indexTahap = TAHAP_SELEKSI.indexOf(lamaran.status);
@@ -80,6 +82,9 @@ export function DetailLamaran({
                 Simulasi +15 Hari
               </Tombol>
             )}
+            <Tombol varian="bahaya" ukuran="kecil" onClick={onHapus}>
+              Hapus
+            </Tombol>
             <Tombol varian="gelap" ukuran="kecil" onClick={onTutup}>
               Tutup ✕
             </Tombol>

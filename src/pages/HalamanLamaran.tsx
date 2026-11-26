@@ -18,6 +18,7 @@ interface HalamanLamaranProps {
   onCentangChecklist: (id: string, idItem: string) => void;
   onHapusChecklist: (id: string, idItem: string) => void;
   onTambahCatatan: (id: string, teks: string) => void;
+  onHapus: (id: string) => void;
 }
 
 type Urutan = "terbaru" | "interview" | "offer";
@@ -32,6 +33,7 @@ export function HalamanLamaran({
   onCentangChecklist,
   onHapusChecklist,
   onTambahCatatan,
+  onHapus,
 }: HalamanLamaranProps) {
   // State filter (hanya memengaruhi tampilan, data asli di App tidak berubah)
   const [cari, setCari] = useState("");
@@ -164,6 +166,7 @@ export function HalamanLamaran({
               persenMatch={hitungSkillMatch(kaptenSkills, lamaran.requiredSkills).persen}
               onSimulasi={() => onSimulasi(lamaran.id)}
               onDetail={() => setIdTerpilih(lamaran.id)}
+              onHapus={() => onHapus(lamaran.id)}
             />
           ))}
         </div>
@@ -182,6 +185,7 @@ export function HalamanLamaran({
           onHapusChecklist={(idItem) => onHapusChecklist(lamaranTerpilih.id, idItem)}
           onTambahCatatan={(teks) => onTambahCatatan(lamaranTerpilih.id, teks)}
           onSimulasi={() => onSimulasi(lamaranTerpilih.id)}
+          onHapus={() => onHapus(lamaranTerpilih.id)}
         />
       )}
     </section>
